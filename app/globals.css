@@ -1,26 +1,125 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ─── Static design tokens ───────────────────────────────────────────────── */
+@theme {
+  /* Colors */
+  --color-bg-primary:     #08080F;
+  --color-bg-secondary:   #0F0F1A;
+  --color-bg-tertiary:    #141420;
+  --color-border-default: #1E1E30;
+  --color-border-active:  #2D2D50;
+  --color-accent:         #6B4EFF;
+  --color-accent-cyan:    #00D4FF;
+  --color-accent-warm:    #F59E0B;
+  --color-accent-blue:    #4E7FFF;
+  --color-accent-glow:    #6B4EFF25;
+  --color-success:        #34D399;
+  --color-error:          #FF4D4D;
+  --color-text-primary:   #F0F0FF;
+  --color-text-secondary: #8080A0;
+  --color-text-disabled:  #404060;
+
+  /* Border radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  /* Box shadows */
+  --shadow-card-hover:  0 0 40px #6B4EFF25;
+  --shadow-accent:      0 0 20px #6B4EFF60;
+  --shadow-cyan-hover:  0 0 60px #00D4FF20;
+  --shadow-focus-ring:  0 0 0 2px #6B4EFF;
+
+  /* Animations */
+  --animate-bounce-slow: bounce 2s ease-in-out infinite;
+  --animate-drift-1:     drift1 10s ease-in-out infinite alternate;
+  --animate-drift-2:     drift2 14s ease-in-out infinite alternate;
+
+  /* Display font sizes */
+  --text-display-desktop: 88px;
+  --text-display-desktop--line-height: 1.05;
+  --text-display-desktop--letter-spacing: -0.03em;
+  --text-display-desktop--font-weight: 800;
+
+  --text-display-tablet: 56px;
+  --text-display-tablet--line-height: 1.1;
+  --text-display-tablet--letter-spacing: -0.02em;
+  --text-display-tablet--font-weight: 800;
+
+  --text-display-mobile: 36px;
+  --text-display-mobile--line-height: 1.15;
+  --text-display-mobile--letter-spacing: -0.01em;
+  --text-display-mobile--font-weight: 800;
 }
 
+/* ─── Font vars resolved from next/font (must be inline) ─────────────────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans:    var(--font-geist-sans), sans-serif;
+  --font-display: var(--font-syne), sans-serif;
+  --font-mono:    var(--font-geist-mono), monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Keyframes ──────────────────────────────────────────────────────────── */
+@keyframes drift1 {
+  0%   { transform: translate(0px, 0px); }
+  100% { transform: translate(30px, -20px); }
+}
+
+@keyframes drift2 {
+  0%   { transform: translate(0px, 0px); }
+  100% { transform: translate(-20px, 25px); }
+}
+
+/* ─── Base styles ────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #08080F;
+  color: #F0F0FF;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Noise grain texture overlay — SVG feTurbulence, no external file needed */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0.3'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  opacity: 0.045;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: overlay;
+}
+
+/* Selection */
+::selection {
+  background-color: #6B4EFF40;
+  color: #F0F0FF;
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #6B4EFF;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #08080F;
+}
+::-webkit-scrollbar-thumb {
+  background: #2D2D50;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6B4EFF;
 }
