@@ -1,0 +1,69 @@
+---
+slug: forge
+title: Forge — AI Productivity App
+description: Started as a personal AI coach. Friends saw it and wanted in. Rebuilt it for everyone — auth, database, real users, live product.
+metric: Side project → 10+ live users
+tools: ["Claude API", "Supabase", "Next.js", "TypeScript", "Email API"]
+icon: Flame
+status: active
+---
+
+## The origin
+
+I built the first version for myself. No signup. No database. Everything hardcoded for one person.
+
+It had an AI coach connected to my real schedule — it didn't just answer questions, it took actions: rescheduled tasks, tracked habits, and read my diary entries to respond like a psychologist who actually knew my week. XP, streaks, achievements. I used it every day.
+
+Then I showed it to friends. They wanted it too.
+
+---
+
+## How it went: 4 steps
+
+**① The personal version worked too well**
+
+The AI knew everything: my mood from journal entries, my task backlog, my schedule gaps. It acted on that context — not "here's advice" but "I've updated your Tuesday, here's why."
+
+That's when I realised the idea had legs beyond just me.
+
+**② The hard part — making personal code work for everyone**
+
+My name, my goals, my tracks were baked into the code. Every user needed their own space: their own AI context, their own diary, their own schedule. Nothing could be hardcoded anymore.
+
+The challenge wasn't just technical. It was keeping the feeling of the original — that the AI actually *knows* you — while making it work for a stranger on day one.
+
+**③ What got rebuilt**
+
+Three things had to change completely:
+
+- **Auth** — users sign up, log in, own their data. Supabase handled identity and row-level security so no one sees anyone else's diary
+- **Database** — journal entries, habits, streaks, schedule — all moved from localStorage to Supabase. Data that persists, syncs, and survives a browser clear
+- **Email** — the AI doesn't only live in the chat window. Weekly summaries, streak reminders, and achievement unlocks go out automatically
+
+**④ Launch — two beta rounds, real bugs, real fixes**
+
+First beta found auth issues. Broke for some users on login. Fixed. Second round — smoother. Edge cases in the achievement system. Fixed.
+
+After the second round: stable enough to open up. Custom domain, live environment, real users.
+
+---
+
+## What Forge does
+
+**AI diary with memory** — write about your day, the AI responds as a coach. It reads previous entries and builds a picture of your patterns over time. Not generic advice — responses shaped by what you've actually written.
+
+**Schedule in plain language** — describe your week, the AI organises it, flags what's urgent, and suggests where you're overloading yourself.
+
+**Habits + gamification** — streaks, XP, achievement badges. The kind of system that makes you want to open the app tomorrow just to keep the streak alive.
+
+**Psychology mode** — the AI uses your journal context to ask the right questions at the right time. It notices when you've mentioned something three weeks in a row.
+
+---
+
+## Who it's for
+
+People who want a tool that actually adapts to them — not a generic productivity app with empty fields to fill in, but a system that gets better the more you use it.
+
+Currently: 10+ registered users on a live domain. Real data going in, real patterns coming back.
+
+The original idea — an AI that knows your day and acts on it — survived the move from personal project to product.

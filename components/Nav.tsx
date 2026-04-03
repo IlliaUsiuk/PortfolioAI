@@ -61,7 +61,7 @@ export default function Nav() {
           scrolled ? 'border-b border-border-default' : 'border-b border-transparent',
         ].join(' ')}
       >
-        <nav className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
+        <nav className="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between">
 
           {/* Logo */}
           <Link
@@ -107,7 +107,7 @@ export default function Nav() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub profile"
-              className="text-text-secondary hover:text-text-primary transition-colors duration-150"
+              className="text-text-secondary hover:text-text-primary transition-[color,filter] duration-200 hover:[filter:drop-shadow(0_0_7px_rgba(107,78,255,0.6))]"
             >
               <GithubIcon size={18} />
             </a>
@@ -115,7 +115,7 @@ export default function Nav() {
             {/* Contact CTA */}
             <button
               onClick={handleContactClick}
-              className="px-4 py-2 rounded-full bg-accent text-white text-sm font-medium hover:bg-[#5B3EEF] hover:shadow-accent transition-[background-color,box-shadow] duration-150"
+              className="px-4 py-2 rounded-md bg-accent text-white text-sm font-medium hover:bg-[#5B3EEF] transition-colors duration-150"
             >
               Contact
             </button>

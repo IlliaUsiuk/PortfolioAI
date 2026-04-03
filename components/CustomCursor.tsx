@@ -4,17 +4,18 @@ import { useEffect, useRef } from 'react'
 
 export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null)
+  const ringRef = useRef<HTMLDivElement>(null)
   const posRef = useRef({ x: -100, y: -100 })
   const currentRef = useRef({ x: -100, y: -100 })
   const hoveredRef = useRef(false)
   const rafRef = useRef<number>(0)
 
   useEffect(() => {
-    // Only on desktop (pointer: fine)
     if (!window.matchMedia('(pointer: fine)').matches) return
 
     const dot = dotRef.current
-    if (!dot) return
+    const ring = ringRef.current
+    if (!dot || !ring) return
 
     const onMove = (e: MouseEvent) => {
       posRef.current = { x: e.clientX, y: e.clientY }
@@ -34,23 +35,18 @@ export default function CustomCursor() {
       currentRef.current.x = lerp(currentRef.current.x, posRef.current.x, 0.12)
       currentRef.current.y = lerp(currentRef.current.y, posRef.current.y, 0.12)
 
-      if (dot) {
-        dot.style.transform = `translate(${currentRef.current.x}px, ${currentRef.current.y}px)`
-        if (hoveredRef.current) {
-          dot.style.width = '40px'
-          dot.style.height = '40px'
-          dot.style.opacity = '0.15'
-          dot.style.background = '#6B4EFF'
-          dot.style.marginLeft = '-20px'
-          dot.style.marginTop = '-20px'
-        } else {
-          dot.style.width = '12px'
-          dot.style.height = '12px'
-          dot.style.opacity = '1'
-          dot.style.background = '#F0F0FF'
-          dot.style.marginLeft = '-6px'
-          dot.style.marginTop = '-6px'
-        }
+      const tx = currentRef.current.x
+      const ty = currentRef.current.y
+
+      dot.style.transform = `translate(${tx}px, ${ty}px)`
+      ring.style.transform = `translate(${tx}px, ${ty}px)`
+
+      if (hoveredRef.current) {
+        dot.style.opacity = '0'
+        ring.style.opacity = '1'
+      } else {
+        dot.style.opacity = '1'
+        ring.style.opacity = '0'
       }
 
       rafRef.current = requestAnimationFrame(animate)
@@ -68,16 +64,27 @@ export default function CustomCursor() {
   }, [])
 
   return (
-    <div
-      ref={dotRef}
-      className="pointer-events-none fixed top-0 left-0 z-[9998] rounded-full transition-[width,height,opacity,background] duration-200"
-      style={{
-        width: 12,
-        height: 12,
-        background: '#F0F0FF',
-        marginLeft: -6,
-        marginTop: -6,
-      }}
-    />
+    <>
+      {/* Small dot — default state */}
+      <div
+        ref={dotRef}
+        className="pointer-events-none fixed top-0 left-0 z-[9998] rounded-full transition-opacity duration-150"
+        style={{ width: 8, height: 8, background: '#F0F0FF', marginLeft: -4, marginTop: -4 }}
+      />
+      {/* Ring — hover state */}
+      <div
+        ref={ringRef}
+        className="pointer-events-none fixed top-0 left-0 z-[9998] rounded-full transition-opacity duration-150"
+        style={{
+          width: 30,
+          height: 30,
+          border: '1.5px solid rgba(240, 240, 255, 0.55)',
+          background: 'transparent',
+          marginLeft: -15,
+          marginTop: -15,
+          opacity: 0,
+        }}
+      />
+    </>
   )
 }

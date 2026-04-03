@@ -7,10 +7,10 @@ export interface CasePreview {
 
 export const casesPreview: CasePreview[] = [
   {
-    title: 'Business Process Automation',
-    icon: 'Zap',
+    title: 'Personal AI Dashboard',
+    icon: 'Bot',
     comingSoon: 'April 2026',
-    hint: 'A manual process that ate 10+ hours a week — automated. Real client, real numbers.',
+    hint: 'The original personal version — prompt caching cut API costs by 90%. Writing it up.',
   },
   {
     title: 'Content on Autopilot',

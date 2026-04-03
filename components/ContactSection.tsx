@@ -12,7 +12,7 @@ const fadeUp: Variants = {
 export default function ContactSection() {
   return (
     <section id="contact" className="py-24 px-6">
-      <div className="max-w-[1200px] mx-auto">
+      <div className="max-w-[1400px] mx-auto">
         <motion.div
           initial="hidden"
           whileInView="visible"

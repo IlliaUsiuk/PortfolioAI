@@ -41,100 +41,104 @@ export default function AboutPage() {
     <>
       <CustomCursor />
       <Nav />
-      <main className="max-w-[760px] mx-auto px-6 pt-28 pb-24">
+      <main className="max-w-[1400px] mx-auto px-6 pt-24 pb-24">
 
-        {/* Intro */}
-        <section className="mb-16">
-          <p className="text-text-secondary text-sm mb-4">Illia Usiuk · AI Automation Specialist</p>
-          <h1 className="font-bold text-text-primary text-3xl md:text-4xl mb-8">About</h1>
-          <p className="text-text-secondary leading-relaxed">
-            I got into AI automation the way most people do — by spending too much time on work that
-            felt like it should run itself.{' '}
-            <span className="text-text-disabled">[YOUR STORY]</span>. That frustration became a
-            skill set. Now I find those exact places in businesses where AI can take over, and I
-            build the systems that make it happen.
-          </p>
-        </section>
+        {/* Two-column layout */}
+        <div className="grid lg:grid-cols-[1fr_360px] gap-12 lg:gap-16 items-start">
 
-        {/* What I actually do */}
-        <section className="mb-16">
-          <h2 className="font-semibold text-text-primary text-xl mb-4">What I actually do</h2>
-          <p className="text-text-secondary leading-relaxed">
-            I find the parts of your business that eat hours without adding value — leads falling
-            through the cracks, reports built manually every week, approvals sitting in inboxes for
-            days. Then I build systems that handle those parts automatically: AI agents that process
-            requests, workflows that trigger without anyone pressing a button, integrations that keep
-            your tools in sync. Most of what I build is running in production within a week.
-          </p>
-        </section>
+          {/* ── Left column: story + principles ── */}
+          <div>
+            <p className="text-accent text-xs font-medium tracking-widest uppercase mb-4">Illia Usiuk · AI Automation Specialist</p>
+            <h1 className="font-bold text-text-primary text-3xl md:text-4xl mb-8">About</h1>
 
-        {/* Download CV */}
-        <div className="mb-16">
-          <a
-            href="https://drive.google.com/drive/folders/YOUR_CV_FOLDER_ID"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border-active text-text-primary text-sm font-medium hover:bg-bg-tertiary transition-colors duration-150"
-          >
-            Download CV
-            <ExternalLink size={14} />
-          </a>
+            <p className="text-text-secondary leading-relaxed mb-10">
+              I got into AI automation the way most people do — by spending too much time on work that
+              felt like it should run itself.{' '}
+              <span className="text-text-disabled">[YOUR STORY]</span>. That frustration became a
+              skill set. Now I find those exact places in businesses where AI can take over, and I
+              build the systems that make it happen.
+            </p>
+
+            <section className="mb-10">
+              <h2 className="font-semibold text-text-primary text-xl mb-4">What I actually do</h2>
+              <p className="text-text-secondary leading-relaxed">
+                I find the parts of your business that eat hours without adding value — leads falling
+                through the cracks, reports built manually every week, approvals sitting in inboxes for
+                days. Then I build systems that handle those parts automatically: AI agents that process
+                requests, workflows that trigger without anyone pressing a button, integrations that keep
+                your tools in sync. Most of what I build is running in production within a week.
+              </p>
+            </section>
+
+            <div className="mb-10">
+              <a
+                href="https://drive.google.com/drive/folders/YOUR_CV_FOLDER_ID"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md border border-border-active text-text-primary text-sm font-medium hover:bg-bg-tertiary transition-colors duration-150"
+              >
+                Download CV
+                <ExternalLink size={14} />
+              </a>
+            </div>
+
+            <section className="mb-10">
+              <h2 className="font-semibold text-text-primary text-xl mb-6">How I work</h2>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {principles.map(({ title, body }) => (
+                  <div key={title} className="rounded-md bg-bg-secondary border border-border-default p-5">
+                    <p className="text-text-primary font-medium text-sm mb-2">{title}</p>
+                    <p className="text-text-secondary text-sm leading-relaxed">{body}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section>
+              <h2 className="font-semibold text-text-primary text-xl mb-4">My path</h2>
+              <p className="text-text-secondary leading-relaxed">
+                Started in <span className="text-text-disabled">[FIELD]</span>, moved into no-code
+                automation, then into AI as it became practical. The thread across all of it: find the
+                friction, remove it. AI just made that possible at a scale I couldn't reach before.
+              </p>
+            </section>
+          </div>
+
+          {/* ── Right column: skills + built with AI ── */}
+          <div className="lg:sticky lg:top-28 flex flex-col gap-6">
+
+            <div className="rounded-md bg-bg-secondary border border-border-default p-6">
+              <h2 className="font-semibold text-text-primary text-base mb-5">Skills</h2>
+              <div className="space-y-5">
+                {Object.entries(skills).map(([category, items]) => (
+                  <div key={category}>
+                    <p className="text-text-disabled text-xs uppercase tracking-wider mb-2">{category}</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {items.map(skill => (
+                        <span
+                          key={skill}
+                          className="text-sm px-2.5 py-1 rounded-sm bg-bg-tertiary border border-border-default text-text-secondary"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-md bg-bg-secondary border border-border-default p-6">
+              <p className="text-text-primary font-medium text-sm mb-2">Built with AI</p>
+              <p className="text-text-secondary text-sm leading-relaxed">
+                This site was planned, structured, and built with Claude as a thinking partner.
+                Architecture, copy, design system, code — all developed through AI-assisted process.
+                The portfolio is the proof of method.
+              </p>
+            </div>
+
+          </div>
         </div>
-
-        {/* Skills */}
-        <section className="mb-16">
-          <h2 className="font-semibold text-text-primary text-xl mb-6">Skills</h2>
-          <div className="space-y-6">
-            {Object.entries(skills).map(([category, items]) => (
-              <div key={category}>
-                <p className="text-text-secondary text-xs uppercase tracking-wider mb-2">{category}</p>
-                <div className="flex flex-wrap gap-2">
-                  {items.map(skill => (
-                    <span
-                      key={skill}
-                      className="text-xs px-2.5 py-1 rounded-sm bg-bg-secondary border border-border-default text-text-secondary"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* How I work */}
-        <section className="mb-16">
-          <h2 className="font-semibold text-text-primary text-xl mb-6">How I work</h2>
-          <div className="grid gap-6 sm:grid-cols-2">
-            {principles.map(({ title, body }) => (
-              <div key={title} className="rounded-md bg-bg-secondary border border-border-default p-5">
-                <p className="text-text-primary font-medium text-sm mb-2">{title}</p>
-                <p className="text-text-secondary text-sm leading-relaxed">{body}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* My path */}
-        <section className="mb-16">
-          <h2 className="font-semibold text-text-primary text-xl mb-4">My path</h2>
-          <p className="text-text-secondary leading-relaxed">
-            Started in <span className="text-text-disabled">[FIELD]</span>, moved into no-code
-            automation, then into AI as it became practical. The thread across all of it: find the
-            friction, remove it. AI just made that possible at a scale I couldn't reach before.
-          </p>
-        </section>
-
-        {/* Built with AI */}
-        <section className="rounded-md bg-bg-secondary border border-border-default p-6">
-          <p className="text-text-primary font-medium text-sm mb-2">Built with AI</p>
-          <p className="text-text-secondary text-sm leading-relaxed">
-            This site itself was planned, structured, and built with Claude as a thinking partner.
-            The architecture decisions, copywriting, design system, and code — all developed through
-            AI-assisted process. The portfolio is the proof of method, not just a list of projects.
-          </p>
-        </section>
       </main>
       <Footer />
     </>

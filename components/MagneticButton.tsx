@@ -10,8 +10,8 @@ interface Props {
 
 export default function MagneticButton({ children, className }: Props) {
   const ref = useRef<HTMLDivElement>(null)
-  const x = useSpring(0, { stiffness: 150, damping: 15 })
-  const y = useSpring(0, { stiffness: 150, damping: 15 })
+  const x = useSpring(0, { stiffness: 120, damping: 22 })
+  const y = useSpring(0, { stiffness: 120, damping: 22 })
 
   const handleMouseMove = (e: React.MouseEvent) => {
     // Desktop only
@@ -25,11 +25,11 @@ export default function MagneticButton({ children, className }: Props) {
     const dx = e.clientX - centerX
     const dy = e.clientY - centerY
     const dist = Math.sqrt(dx * dx + dy * dy)
-    const zone = 80
+    const zone = 55
 
     if (dist < zone) {
-      x.set(dx * 0.3)
-      y.set(dy * 0.3)
+      x.set(dx * 0.1)
+      y.set(dy * 0.1)
     }
   }
 

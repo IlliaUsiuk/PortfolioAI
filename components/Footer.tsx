@@ -22,7 +22,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-border-default mt-auto">
       {/* CTA row */}
-      <div className="max-w-[1200px] mx-auto px-6 py-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div className="max-w-[1400px] mx-auto px-6 py-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <p className="text-text-primary font-semibold text-lg">
             Got a process that's eating your time?
@@ -37,14 +37,14 @@ export default function Footer() {
             e.preventDefault()
             document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
           }}
-          className="shrink-0 px-6 py-3 rounded-full bg-accent text-white text-sm font-medium hover:bg-[#5B3EEF] hover:shadow-accent transition-[background-color,box-shadow] duration-150"
+          className="shrink-0 px-6 py-2.5 rounded-md bg-accent text-white text-sm font-medium hover:bg-[#5B3EEF] transition-colors duration-150"
         >
           Let's talk →
         </a>
       </div>
 
       {/* Minimal row */}
-      <div className="max-w-[1200px] mx-auto px-6 py-6 border-t border-border-default flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div className="max-w-[1400px] mx-auto px-6 py-6 border-t border-border-default flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <p className="text-text-disabled text-sm">
           © {new Date().getFullYear()} Illia Usiuk · Built with AI
         </p>
@@ -54,7 +54,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="text-text-disabled hover:text-text-secondary transition-colors duration-150"
+            className="text-text-disabled hover:text-text-primary transition-[color,filter] duration-200 hover:[filter:drop-shadow(0_0_7px_rgba(107,78,255,0.6))]"
           >
             <GithubIcon size={18} />
           </a>
@@ -63,7 +63,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            className="text-text-disabled hover:text-text-secondary transition-colors duration-150"
+            className="text-text-disabled hover:text-text-primary transition-[color,filter] duration-200 hover:[filter:drop-shadow(0_0_7px_rgba(107,78,255,0.6))]"
           >
             <LinkedinIcon size={18} />
           </a>
@@ -72,14 +72,14 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Telegram"
-            className="text-text-disabled hover:text-text-secondary transition-colors duration-150"
+            className="text-text-disabled hover:text-text-primary transition-[color,filter] duration-200 hover:[filter:drop-shadow(0_0_7px_rgba(107,78,255,0.6))]"
           >
             <Send size={18} />
           </a>
           <a
             href="mailto:illia.usiuk@gmail.com"
             aria-label="Email"
-            className="text-text-disabled hover:text-text-secondary transition-colors duration-150"
+            className="text-text-disabled hover:text-text-primary transition-[color,filter] duration-200 hover:[filter:drop-shadow(0_0_7px_rgba(107,78,255,0.6))]"
           >
             <Mail size={18} />
           </a>
