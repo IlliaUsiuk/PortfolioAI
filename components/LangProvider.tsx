@@ -21,6 +21,8 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
   const setLang = (l: Lang) => {
     setLangState(l)
     localStorage.setItem('lang', l)
+    // Cookie so server components (case pages) can read the locale
+    document.cookie = `lang=${l}; path=/; max-age=31536000; SameSite=Lax`
   }
 
   return (

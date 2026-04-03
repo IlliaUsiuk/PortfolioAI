@@ -5,12 +5,15 @@ import { getCaseBySlug, getActiveSlugs, estimateReadTime } from '@/lib/cases'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import ScrollProgress from '@/components/ScrollProgress'
+import { cookies } from 'next/headers'
 
 interface Params { slug: string }
 
 export async function generateStaticParams() {
   return getActiveSlugs().map(slug => ({ slug }))
 }
+
+export const dynamic = 'force-dynamic'
 
 export async function generateMetadata(
   { params }: { params: Promise<Params> }
@@ -29,8 +32,14 @@ export async function generateMetadata(
 
 export default async function CasePage({ params }: { params: Promise<Params> }) {
   const { slug } = await params
-  const data = getCaseBySlug(slug)
 
+  const cookieStore = await cookies()
+  const langCookie = cookieStore.get('lang')?.value
+  const locale: 'en' | 'uk' = langCookie === 'UA' ? 'uk' : 'en'
+
+  const isUK = locale === 'uk'
+
+  const data = getCaseBySlug(slug, locale)
   if (!data || data.frontmatter.status !== 'active') notFound()
 
   const { frontmatter: c, content } = data
@@ -41,21 +50,27 @@ export default async function CasePage({ params }: { params: Promise<Params> }) 
     options: { parseFrontmatter: false },
   })
 
+  const ui = {
+    back: isUK ? '← Всі кейси' : '← All cases',
+    about: isUK ? 'Про цей кейс' : 'About this case',
+    stack: isUK ? 'Стек' : 'Stack',
+    read: isUK ? 'хв читання' : 'min read',
+    cta: isUK ? 'Схожа задача?' : 'Got a similar problem?',
+  }
+
   return (
     <>
       <ScrollProgress />
       <main className="max-w-[1400px] mx-auto px-6 pt-24 pb-24">
 
-        {/* Back */}
         <Link
           href="/#cases"
           className="inline-flex items-center gap-1.5 text-text-secondary text-sm hover:text-text-primary transition-colors duration-150 mb-10"
         >
           <ArrowLeft size={14} />
-          All cases
+          {ui.back}
         </Link>
 
-        {/* Two-column layout */}
         <div className="grid lg:grid-cols-[1fr_280px] gap-12 lg:gap-16 items-start">
 
           {/* ── Left: prose ── */}
@@ -81,31 +96,28 @@ export default async function CasePage({ params }: { params: Promise<Params> }) 
           {/* ── Right: sticky sidebar ── */}
           <aside className="lg:sticky lg:top-28 flex flex-col gap-4">
 
-            {/* Meta card */}
             <div className="rounded-md bg-bg-secondary border border-border-default p-5">
-              <p className="text-text-disabled text-xs uppercase tracking-wider mb-3">About this case</p>
+              <p className="text-text-disabled text-xs uppercase tracking-wider mb-3">{ui.about}</p>
               <p className="text-text-secondary text-sm leading-relaxed mb-4">{c.description}</p>
-              <p className="text-text-disabled text-sm">{readTime} min read</p>
+              <p className="text-text-disabled text-sm">{readTime} {ui.read}</p>
             </div>
 
-            {/* Tools */}
             <div className="rounded-md bg-bg-secondary border border-border-default p-5">
-              <p className="text-text-disabled text-xs uppercase tracking-wider mb-3">Stack</p>
+              <p className="text-text-disabled text-xs uppercase tracking-wider mb-3">{ui.stack}</p>
               <div className="flex flex-wrap gap-1.5">
-                {c.tools.map(t => (
-                  <span key={t} className="text-sm px-2.5 py-1 rounded-sm bg-bg-tertiary text-text-secondary border border-border-default">
-                    {t}
+                {c.tools.map(tool => (
+                  <span key={tool} className="text-sm px-2.5 py-1 rounded-sm bg-bg-tertiary text-text-secondary border border-border-default">
+                    {tool}
                   </span>
                 ))}
               </div>
             </div>
 
-            {/* CTA */}
             <a
               href="/#contact"
               className="inline-flex items-center justify-center h-11 px-6 rounded-md bg-accent text-white text-sm font-medium hover:bg-[#5B3EEF] transition-colors duration-200"
             >
-              Got a similar problem?
+              {ui.cta}
             </a>
           </aside>
         </div>
