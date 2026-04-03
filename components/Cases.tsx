@@ -20,7 +20,8 @@ interface ActiveCase {
 }
 
 interface Props {
-  activeCases: ActiveCase[]
+  activeCasesEn: ActiveCase[]
+  activeCasesUk: ActiveCase[]
 }
 
 type IconComponent = React.FC<LucideProps>
@@ -88,10 +89,15 @@ function InProgressCard({ item }: { item: (typeof casesPreview)[number] }) {
 }
 
 /* ─── Cases section ─────────────────────────────────────────────────────────── */
-export default function Cases({ activeCases }: Props) {
-  const previews = casesPreview.slice(0, 3)
+export default function Cases({ activeCasesEn, activeCasesUk }: Props) {
   const { lang } = useLang()
   const tr = t[lang].cases
+  const trPreviews = t[lang].previews
+  const activeCases = lang === 'UA' ? activeCasesUk : activeCasesEn
+  const previews = casesPreview.slice(0, 3).map((p, i) => ({
+    ...p,
+    title: trPreviews[i]?.title ?? p.title,
+  }))
 
   return (
     <section id="cases" className="py-24 px-6">
