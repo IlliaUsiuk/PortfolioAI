@@ -3,13 +3,13 @@ import type { Metadata } from 'next'
 import { compileMDX } from 'next-mdx-remote/rsc'
 import { getCaseBySlug, getActiveSlugs, estimateReadTime } from '@/lib/cases'
 import Link from 'next/link'
-import { ArrowLeft, BookOpen, CalendarDays, Trophy, Brain, Zap, Star, Target, Layers, Users, Database, Clock, MessageSquare, Search, Repeat, MessageCircle, type LucideIcon } from 'lucide-react'
+import { ArrowLeft, BookOpen, CalendarDays, Trophy, Brain, Zap, Star, Target, Layers, Users, Database, Clock, MessageSquare, Search, Repeat, MessageCircle, Sparkles, type LucideIcon } from 'lucide-react'
 import ScrollProgress from '@/components/ScrollProgress'
 import { cookies } from 'next/headers'
 
 const ICON_MAP: Record<string, LucideIcon> = {
   BookOpen, CalendarDays, Trophy, Brain, Zap, Star, Target, Layers,
-  Users, Database, Clock, MessageSquare, Search, Repeat, MessageCircle,
+  Users, Database, Clock, MessageSquare, Search, Repeat, MessageCircle, Sparkles,
 }
 
 interface Params { slug: string }
