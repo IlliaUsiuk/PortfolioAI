@@ -16,6 +16,34 @@ features:
   - { icon: "CalendarDays", title: "Smart Schedule", desc: "Describe your tasks in plain language — get back prioritised cards with time estimates" }
   - { icon: "Trophy", title: "Habit Tracking", desc: "Streaks, XP, achievement badges — consistency feels like progress, not discipline" }
   - { icon: "Brain", title: "Psychology Mode", desc: "Asks the right questions based on what you've written. Notices what you don't" }
+sections:
+  - title: "How it started"
+    type: text
+    body: "Built the first version for myself — no sign-up, no database, just a tool shaped around how I work. Journal, AI coach, habit tracking with streaks and XP. I used it every day. Friends saw it and wanted the same."
+  - title: "What it actually did"
+    type: cards
+    items:
+      - icon: Brain
+        title: "30 → 10 min on any problem"
+        desc: "The AI read what I wrote and responded with questions based on patterns across entries. Writing into a void became a real feedback loop."
+      - icon: CalendarDays
+        title: "40 min weekly planning → 8 min"
+        desc: "Send a rough task list, get back prioritised cards with time estimates. The friction of weekly planning basically disappeared."
+      - icon: Trophy
+        title: "Habits that actually stick"
+        desc: "Streaks and XP sound gimmicky until you hit a 30-day streak without consciously thinking about it. Consistency starts feeling like progress."
+  - title: "What changed when I opened it up"
+    type: cards
+    items:
+      - icon: Users
+        title: "Personal data → user accounts"
+        desc: "Everything hardcoded for me became dynamic. Supabase Auth + row-level security — each user gets their own space, no one sees anyone else's journal."
+      - icon: Database
+        title: "localStorage → real database"
+        desc: "The original lived in localStorage. Supabase fixed the 'clear browser, lose months of data' problem. Weekly summaries and streak reminders added too."
+  - title: "Launch"
+    type: text
+    body: "Two beta rounds. Real bugs found, real bugs fixed. After that: stable enough to open up. Live domain, real users writing in their journals."
 ---
 
 ## How it started

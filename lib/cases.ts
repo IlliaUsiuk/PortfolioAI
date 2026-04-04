@@ -16,6 +16,19 @@ export interface CaseFeature {
   desc: string
 }
 
+export interface CaseSectionItem {
+  icon: string
+  title: string
+  desc: string
+}
+
+export interface CaseSection {
+  title: string
+  type: 'text' | 'cards'
+  body?: string
+  items?: CaseSectionItem[]
+}
+
 export interface CaseFrontmatter {
   slug: string
   title: string
@@ -28,6 +41,7 @@ export interface CaseFrontmatter {
   logo?: string
   highlights?: CaseHighlight[]
   features?: CaseFeature[]
+  sections?: CaseSection[]
 }
 
 function readCase(locale: 'en' | 'uk', slug: string): { frontmatter: CaseFrontmatter; content: string } | null {

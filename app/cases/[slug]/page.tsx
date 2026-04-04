@@ -3,12 +3,12 @@ import type { Metadata } from 'next'
 import { compileMDX } from 'next-mdx-remote/rsc'
 import { getCaseBySlug, getActiveSlugs, estimateReadTime } from '@/lib/cases'
 import Link from 'next/link'
-import { ArrowLeft, BookOpen, CalendarDays, Trophy, Brain, Zap, Star, Target, Layers, type LucideIcon } from 'lucide-react'
+import { ArrowLeft, BookOpen, CalendarDays, Trophy, Brain, Zap, Star, Target, Layers, Users, Database, type LucideIcon } from 'lucide-react'
 import ScrollProgress from '@/components/ScrollProgress'
 import { cookies } from 'next/headers'
 
 const ICON_MAP: Record<string, LucideIcon> = {
-  BookOpen, CalendarDays, Trophy, Brain, Zap, Star, Target, Layers,
+  BookOpen, CalendarDays, Trophy, Brain, Zap, Star, Target, Layers, Users, Database,
 }
 
 interface Params { slug: string }
@@ -49,10 +49,12 @@ export default async function CasePage({ params }: { params: Promise<Params> }) 
   const { frontmatter: c, content } = data
   const readTime = estimateReadTime(content)
 
-  const { content: mdxContent } = await compileMDX({
+  const hasSections = c.sections && c.sections.length > 0
+
+  const mdxContent = hasSections ? null : await compileMDX({
     source: content,
     options: { parseFrontmatter: false },
-  })
+  }).then(r => r.content)
 
   const ui = {
     back: isUK ? '← Всі кейси' : '← All cases',
@@ -100,23 +102,56 @@ export default async function CasePage({ params }: { params: Promise<Params> }) 
               </div>
             )}
 
-            <div className="prose prose-invert prose-sm max-w-none
-              [&_h2]:text-text-primary [&_h2]:font-semibold [&_h2]:text-xl [&_h2]:mt-10 [&_h2]:mb-4
-              [&_h3]:text-text-primary [&_h3]:font-semibold [&_h3]:text-base [&_h3]:mt-8 [&_h3]:mb-3
-              [&_p]:text-text-secondary [&_p]:leading-relaxed [&_p]:mb-4
-              [&_li]:text-text-secondary [&_li]:leading-relaxed
-              [&_strong]:text-text-primary
-              [&_a]:text-accent-blue [&_a]:underline [&_a]:underline-offset-2
-              [&_code]:text-accent-cyan [&_code]:bg-bg-tertiary [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded-sm [&_code]:text-xs
-              [&_pre]:bg-bg-secondary [&_pre]:border [&_pre]:border-border-default [&_pre]:rounded-md [&_pre]:p-4 [&_pre]:overflow-x-auto
-              [&_blockquote]:border-l-2 [&_blockquote]:border-accent [&_blockquote]:pl-4 [&_blockquote]:text-text-secondary
-            ">
-              {mdxContent}
-            </div>
+            {/* Sections (card-driven narrative) */}
+            {hasSections ? (
+              <div className="flex flex-col gap-8">
+                {c.sections!.map((section, si) => (
+                  <div key={si}>
+                    <h2 className="text-text-primary font-semibold text-lg mb-3">{section.title}</h2>
+                    {section.type === 'text' ? (
+                      <div className="rounded-md bg-bg-secondary border border-border-default p-5">
+                        <p className="text-text-secondary text-sm leading-relaxed">{section.body}</p>
+                      </div>
+                    ) : (
+                      <div className="grid sm:grid-cols-2 gap-3">
+                        {section.items?.map((item, ii) => {
+                          const Icon = ICON_MAP[item.icon] ?? Zap
+                          return (
+                            <div key={ii} className="rounded-md bg-bg-secondary border border-border-default p-5 flex gap-4 items-start">
+                              <div className="flex-shrink-0 w-9 h-9 rounded-md bg-accent/10 flex items-center justify-center">
+                                <Icon size={18} className="text-accent" />
+                              </div>
+                              <div>
+                                <p className="text-text-primary font-semibold text-sm mb-1">{item.title}</p>
+                                <p className="text-text-secondary text-sm leading-relaxed">{item.desc}</p>
+                              </div>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="prose prose-invert prose-sm max-w-none
+                [&_h2]:text-text-primary [&_h2]:font-semibold [&_h2]:text-xl [&_h2]:mt-10 [&_h2]:mb-4
+                [&_h3]:text-text-primary [&_h3]:font-semibold [&_h3]:text-base [&_h3]:mt-8 [&_h3]:mb-3
+                [&_p]:text-text-secondary [&_p]:leading-relaxed [&_p]:mb-4
+                [&_li]:text-text-secondary [&_li]:leading-relaxed
+                [&_strong]:text-text-primary
+                [&_a]:text-accent-blue [&_a]:underline [&_a]:underline-offset-2
+                [&_code]:text-accent-cyan [&_code]:bg-bg-tertiary [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded-sm [&_code]:text-xs
+                [&_pre]:bg-bg-secondary [&_pre]:border [&_pre]:border-border-default [&_pre]:rounded-md [&_pre]:p-4 [&_pre]:overflow-x-auto
+                [&_blockquote]:border-l-2 [&_blockquote]:border-accent [&_blockquote]:pl-4 [&_blockquote]:text-text-secondary
+              ">
+                {mdxContent}
+              </div>
+            )}
 
             {/* Features grid */}
             {c.features && c.features.length > 0 && (
-              <div className="mt-12 grid sm:grid-cols-2 gap-4">
+              <div className="mt-8 grid sm:grid-cols-2 gap-3">
                 {c.features.map((f, i) => {
                   const Icon = ICON_MAP[f.icon] ?? Zap
                   return (
