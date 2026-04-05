@@ -33,6 +33,7 @@ export interface CaseSection {
   type: 'text' | 'cards' | 'callout' | 'process'
   body?: string
   cta?: string
+  screenshot?: string
   items?: CaseSectionItem[]
   steps?: CaseProcessStep[]
 }

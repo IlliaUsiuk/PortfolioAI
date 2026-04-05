@@ -167,6 +167,17 @@ export default async function CasePage({ params }: { params: Promise<Params> }) 
                       </div>
                     )}
 
+                    {/* screenshot */}
+                    {section.screenshot && (
+                      <div className="mt-4 rounded-lg overflow-hidden border border-border-default">
+                        <img
+                          src={section.screenshot}
+                          alt={section.title}
+                          className="w-full h-auto block"
+                        />
+                      </div>
+                    )}
+
                     {/* callout */}
                     {section.type === 'callout' && (
                       <div className="rounded-md border border-accent/30 bg-accent/5 p-6 flex flex-col sm:flex-row sm:items-center gap-4">
