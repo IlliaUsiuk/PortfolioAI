@@ -168,13 +168,37 @@ export default async function CasePage({ params }: { params: Promise<Params> }) 
                       </div>
                     )}
 
-                    {/* screenshot */}
-                    {section.screenshot && (
+                    {/* split: screenshot + numbered steps side by side */}
+                    {section.type === 'split' && section.steps && (
+                      <div className="grid md:grid-cols-2 gap-5 items-start">
+                        <div className="flex flex-col gap-2.5">
+                          {section.steps.map((step, idx) => (
+                            <div key={idx} className="rounded-md bg-bg-secondary border border-border-default p-3.5 flex gap-3 items-start">
+                              <div className="w-6 h-6 rounded-full border-2 border-accent text-accent flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
+                                {step.step}
+                              </div>
+                              <div>
+                                <p className="text-text-primary font-semibold text-sm leading-tight">{step.label}</p>
+                                <p className="text-text-disabled text-xs mt-0.5 leading-snug">{step.desc}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        {section.screenshot && (
+                          <div className="rounded-lg overflow-hidden border border-border-default">
+                            <img src={section.screenshot} alt={section.title} className="w-full h-auto block" />
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {/* screenshot (non-split sections) */}
+                    {section.screenshot && section.type !== 'split' && (
                       <div className="mt-4 rounded-lg overflow-hidden border border-border-default">
                         <img
                           src={section.screenshot}
                           alt={section.title}
-                          className="w-full h-auto block max-h-[480px] object-cover object-top"
+                          className="w-full h-auto block"
                         />
                       </div>
                     )}

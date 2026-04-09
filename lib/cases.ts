@@ -30,7 +30,7 @@ export interface CaseProcessStep {
 
 export interface CaseSection {
   title: string
-  type: 'text' | 'cards' | 'callout' | 'process'
+  type: 'text' | 'cards' | 'callout' | 'process' | 'split'
   body?: string
   cta?: string
   screenshot?: string
