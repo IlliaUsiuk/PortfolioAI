@@ -1,0 +1,71 @@
+---
+slug: email-assistant
+title: Email AI Assistant
+description: n8n workflow that reads incoming emails, drafts replies with GPT-4o, and sends them to Telegram for approval. One 'ok' sends it. Write a correction — it regenerates.
+metric: 5 min → 30 sec per email reply
+tools: ["n8n", "GPT-4o", "OpenRouter", "Gmail API", "Telegram Bot"]
+icon: Mail
+status: active
+highlights:
+  - { value: "5 min → 30 sec", label: "per email reply" }
+  - { value: "∞", label: "regeneration loops until perfect" }
+  - { value: "auto", label: "detects reply language" }
+features:
+  - { icon: "Mail", title: "Email reading", desc: "Polls Gmail every minute, extracts sender, subject, tone, and full content automatically" }
+  - { icon: "MessageSquare", title: "AI draft", desc: "GPT-4o writes a natural reply — casual or formal depending on the tone of the original" }
+  - { icon: "CheckCircle", title: "One-tap approval", desc: "Reply preview lands in Telegram. Write 'ok' to send. You stay in control, nothing goes out without you." }
+  - { icon: "RefreshCw", title: "Regeneration loop", desc: "Write a correction instead of 'ok' — the AI rewrites the reply and shows the new version. Loop until perfect." }
+sections:
+  - title: "The problem"
+    type: text
+    body: "Email takes longer than it should. Not because replies are hard — but because switching context, opening the thread, thinking about tone, writing something that sounds human — all of that adds up. Five minutes per email, several times a day."
+  - title: "How it works"
+    type: cards
+    items:
+      - icon: Mail
+        title: "1. Email arrives"
+        desc: "Gmail trigger fires. The email — sender, subject, full content — goes into the AI agent."
+      - icon: Brain
+        title: "2. AI reads and drafts"
+        desc: "GPT-4o analyzes the tone (positive, negative, neutral), summarizes the email, and writes a natural reply in the same language."
+      - icon: Send
+        title: "3. Preview in Telegram"
+        desc: "You get a message: who wrote, what tone, what the email says, and the planned reply. No inbox switching."
+      - icon: CheckCircle
+        title: "4. Approve or correct"
+        desc: "Write 'ok' — it sends. Write anything else — the AI rewrites with your correction and shows the new version."
+  - title: "The key detail — human stays in control"
+    type: text
+    body: "Nothing sends automatically. Every reply goes through Telegram approval. The loop continues until you're satisfied — you can correct once, twice, as many times as needed. The AI handles the writing, you handle the judgment."
+  - title: "Why it matters"
+    type: cards
+    items:
+      - icon: Clock
+        title: "5 min → 30 sec"
+        desc: "Reading, drafting, editing — all done by the AI. You spend 30 seconds reviewing and tapping 'ok'."
+      - icon: Globe
+        title: "Automatic language detection"
+        desc: "Received an email in English? Reply in English. In Ukrainian? In Ukrainian. No extra prompting needed."
+      - icon: RefreshCw
+        title: "Unlimited regeneration"
+        desc: "The correction loop has no limit. Each edit makes the reply better — and the AI never loses the context of the original email."
+      - icon: Shield
+        title: "No accidental sends"
+        desc: "The two-flow architecture (Gmail → Telegram, Telegram → Gmail) makes it physically impossible to send without explicit approval."
+  - title: "What's under the hood"
+    type: cards
+    items:
+      - icon: Zap
+        title: "n8n — the backbone"
+        desc: "Two separate workflows connected via shared static data. Gmail trigger in one, Telegram trigger in the other."
+      - icon: Brain
+        title: "GPT-4o via OpenRouter"
+        desc: "Structured output parser extracts email fields reliably. Regeneration agent takes the previous draft + correction as context."
+      - icon: Database
+        title: "Static data as state"
+        desc: "n8n workflow static data stores the pending email between the two flows — no external database needed."
+  - title: "Free. No catch."
+    type: callout
+    body: "The workflow JSON is open — anyone can import it into their n8n instance and connect their own Gmail and Telegram accounts."
+    cta: "Get the workflow"
+---
