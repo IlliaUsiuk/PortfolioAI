@@ -61,10 +61,10 @@ sections:
     type: text
     body: "Every exchange is saved as a row: user message and AI response. On each new message, the bot loads all previous rows, formats them into a proper messages array, and passes them to Claude. The bot knows what was discussed earlier in the session — no repeated questions, no lost context."
 
-  - title: "Demo — two-turn conversation"
+  - title: "Demo — real exchange"
     type: text
-    screenshot: "/cases/support-chatbot/chat-demo.png"
-    body: "Two questions, two answers, full context preserved. First message: asking about iPhone 15 — the bot responds with price, model variants, delivery, payment options. Second message: asking about Nova Poshta delivery — the bot answers without losing the iPhone context. That's the memory layer working: both turns are in Supabase, both loaded on each call."
+    screenshot: "/cases/support-chatbot/supabase-row.png"
+    body: "Customer asks: 'Is Nova Poshta delivery available?' The bot responds with delivery terms, timeline, free shipping threshold, and an offer to help place the order. This is what gets saved to Supabase after every exchange — the raw user message and the full AI response, stored as a row in the `cag` table. Next message loads this row as part of the conversation history."
 
   - title: "Prompt caching — the cost layer"
     type: text
