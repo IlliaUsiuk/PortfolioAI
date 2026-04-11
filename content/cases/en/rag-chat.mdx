@@ -18,7 +18,7 @@ features:
 sections:
   - title: "The problem"
     type: text
-    body: "Documents are static. You can Ctrl+F, scroll through pages, or hope the table of contents helps. But you can't ask a PDF a question and get a structured answer. Every document is a knowledge base that nobody can actually query."
+    body: "A new employee's first week: 20 questions, 400-page documentation, no one to ask without feeling like they're wasting someone's time. A support agent who needs the right answer from a product manual before the client hangs up. A developer searching 3 years of technical decisions in a wiki nobody maintains. Every organization has documents. Almost none of them are actually queryable."
   - title: "Step 1 — loading the document"
     type: text
     screenshot: "/cases/rag-chat/ingestion-flow.png"
@@ -37,10 +37,10 @@ sections:
       - icon: Database
         title: "PostgreSQL docs"
         desc: "5258 chunks. Official documentation — ask about syntax, functions, transactions, configuration."
-  - title: "Demo — ask a novel"
+  - title: "Demo — it works on any text, even fiction"
     type: text
     screenshot: "/cases/rag-chat/chat-harry-potter.png"
-    body: "Question in Ukrainian: 'Tell me what happened in the first chapter?' The bot responds with a structured breakdown — the Dursley family, the secret, the strange day. Accurate, detailed, in Ukrainian. Language is detected automatically."
+    body: "The pipeline doesn't distinguish between documentation and a novel. Harry Potter: 366 chunks, full book indexed. Ask about a chapter, a character, a plot detail — the system finds the right context with the same semantic precision it uses on technical docs. If it handles narrative text this well, structured documentation is easy."
   - title: "Demo — ask the docs"
     type: split
     screenshot: "/cases/rag-chat/chat-postgresql.png"
