@@ -38,33 +38,29 @@ sections:
         desc: "Vector search can return the wrong chunk. The system prompt is static and controlled — the bot answers only from what you put in it."
 
   - title: "How it works"
-    type: split
-    screenshot: "/cases/support-chatbot/workflow.png"
-    steps:
-      - step: 1
-        label: "Message arrives"
-        desc: "Chat trigger fires. The customer's message goes to Edit Fields."
-      - step: 2
-        label: "System prompt prepared"
-        desc: "Full store knowledge loaded: catalog, prices, delivery, payment, warranty, contacts."
-      - step: 3
-        label: "Conversation history loaded"
-        desc: "All previous exchanges pulled from Supabase `cag` table. Code node formats them into Anthropic messages array."
-      - step: 4
-        label: "Claude API called"
-        desc: "System prompt (cached 1h) + history + new message. Prompt caching header enabled."
-      - step: 5
-        label: "Response saved"
-        desc: "User message + AI response written back to Supabase. Memory grows with each turn."
-
-  - title: "Conversation memory in Supabase"
     type: text
-    body: "Every exchange is saved as a row: user message and AI response. On each new message, the bot loads all previous rows, formats them into a proper messages array, and passes them to Claude. The bot knows what was discussed earlier in the session — no repeated questions, no lost context."
+    screenshot: "/cases/support-chatbot/workflow.png"
+    body: "One workflow, seven nodes: chat trigger → system prompt → load history from Supabase → aggregate → format messages → Claude API call → save response. Every step is visible and editable."
 
   - title: "Demo — real exchange"
-    type: text
+    type: split
     screenshot: "/cases/support-chatbot/supabase-row.png"
-    body: "Customer asks: 'Is Nova Poshta delivery available?' The bot responds with delivery terms, timeline, free shipping threshold, and an offer to help place the order. This is what gets saved to Supabase after every exchange — the raw user message and the full AI response, stored as a row in the `cag` table. Next message loads this row as part of the conversation history."
+    steps:
+      - step: 1
+        label: "Customer asks"
+        desc: "Is Nova Poshta delivery available?"
+      - step: 2
+        label: "History loaded from Supabase"
+        desc: "All previous turns pulled from `cag` table and formatted into messages array."
+      - step: 3
+        label: "Claude reads context"
+        desc: "System prompt + history + new question passed to Claude Sonnet."
+      - step: 4
+        label: "Answer returned"
+        desc: "Delivery terms, timeline, free threshold — answered in seconds."
+      - step: 5
+        label: "Exchange saved"
+        desc: "Row written to Supabase: user message + AI response. Memory grows."
 
   - title: "Prompt caching — the cost layer"
     type: text
