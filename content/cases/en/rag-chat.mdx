@@ -27,6 +27,21 @@ sections:
     type: text
     screenshot: "/cases/rag-chat/query-flow.png"
     body: "The question is embedded into the same vector space. Qdrant retrieves the top 20 semantically closest chunks. All 20 are aggregated and passed to Claude with a strict instruction: answer only from the provided context. If the answer isn't there — say so."
+  - title: "The business case"
+    type: cards
+    items:
+      - icon: Users
+        title: "Employee onboarding"
+        desc: "New hire spends 2-3 days hunting for answers in documentation. With queryable docs: 30 seconds per question. 1-2 onboarding days saved per person."
+      - icon: MessageSquare
+        title: "Customer support"
+        desc: "Agents search product manuals manually — 3-5 min per lookup. Semantic search cuts that to seconds. More tickets closed, faster."
+      - icon: Database
+        title: "Internal knowledge base"
+        desc: "Company wikis go stale because nobody searches them. A queryable knowledge base gets used — and stops senior people from answering the same question twice."
+      - icon: BookOpen
+        title: "Technical documentation"
+        desc: "Developer searches 400-page API docs with Ctrl+F. Natural language query returns the exact section in seconds."
   - title: "Two collections, two subjects"
     type: cards
     screenshot: "/cases/rag-chat/qdrant-collections.png"
