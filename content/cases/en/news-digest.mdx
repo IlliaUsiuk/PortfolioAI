@@ -1,0 +1,88 @@
+---
+slug: news-digest
+title: AI News Digest Bot
+description: Automated pipeline that monitors RSS feeds every 12 hours, scrapes full articles, ranks by importance with AI, and delivers a structured digest to Telegram and a full longread to email.
+metric: From 50+ tabs to one digest — automatically, twice a day
+tools: ["n8n", "Claude", "Gemini", "ScrapingBee", "Airtable", "Telegram Bot"]
+icon: Newspaper
+status: active
+highlights:
+  - { value: "12h", label: "fully automatic cycle, no manual input" }
+  - { value: "2 formats", label: "Telegram digest + email longread" }
+  - { value: "0", label: "duplicate articles — Airtable remembers everything" }
+features:
+  - { icon: "Rss", title: "RSS monitoring", desc: "Reads multiple sources every 12 hours. Only fresh articles from the last 24h pass through." }
+  - { icon: "Brain", title: "Two-stage AI", desc: "First AI analyst ranks articles by importance. Then AI writer turns the top stories into a structured longread." }
+  - { icon: "Send", title: "Dual delivery", desc: "Telegram gets a brief digest with key points. Email gets the full longread with analysis and sources." }
+  - { icon: "Database", title: "Memory via Airtable", desc: "Every processed URL is saved. Next run skips everything already seen — no repeats ever." }
+sections:
+  - title: "The problem"
+    type: text
+    body: "Following a topic means opening 10-15 sources every day, scanning headlines, deciding what's worth reading, reading it, and synthesizing it into something useful. That's 1-2 hours of work for maybe 10 minutes of actual insight. Most people either stop following entirely or drown in tabs. The information exists. The bottleneck is processing it."
+
+  - title: "How the pipeline works"
+    type: text
+    screenshot: "/cases/news-digest/workflow-parser.png"
+    body: "Schedule fires every 12 hours. The parser reads RSS sources from Airtable, fetches each feed, filters to articles published in the last 24 hours, and deduplicates against every URL ever processed. Surviving articles (up to 8) go to ScrapingBee which extracts the full article text — not RSS snippets, the real content. Cleaned and aggregated, they get handed off to the writer workflow."
+
+  - title: "Two AI agents, two jobs"
+    type: cards
+    screenshot: "/cases/news-digest/workflow-writer.png"
+    items:
+      - icon: Brain
+        title: "AI Analyst"
+        desc: "Reads all articles. Groups them by topic. Ranks each by importance (1-10). Filters out marketing content. Returns structured JSON: which articles matter and why."
+      - icon: BookOpen
+        title: "AI Writer"
+        desc: "Takes the analyst's ranked selection. Writes a professional longread in Markdown — intro, numbered sections per story, key points, sources, directions to explore."
+      - icon: Zap
+        title: "Why two agents"
+        desc: "One prompt trying to both analyze and write produces mediocre output. Splitting roles forces the analyst to think before the writer writes. Better curation → better content."
+      - icon: Shield
+        title: "Structured output"
+        desc: "Both agents return JSON via schema parsers. The pipeline doesn't break on unexpected formatting — it validates structure before passing data downstream."
+
+  - title: "What you get in Telegram"
+    type: text
+    screenshot: "/cases/news-digest/telegram-output.png"
+    body: "A message arrives twice a day: date, topic, brief summary of each top story (2-3 sentences), reading time estimate, source count, and a link to the full longread. Enough to know what happened. Link if you want depth."
+
+  - title: "What you get in email"
+    type: text
+    screenshot: "/cases/news-digest/email-output.png"
+    body: "The full longread: intro, numbered sections per story, what happened and why it matters, sources linked inline, directions to explore further. Published as a GitHub Gist and sent via email. Readable anywhere, no login required."
+
+  - title: "The deduplication layer"
+    type: cards
+    items:
+      - icon: Database
+        title: "Airtable stores every URL"
+        desc: "After processing, each article URL is saved with a timestamp. Next run loads the full list before touching any RSS feed."
+      - icon: Code
+        title: "URL normalization"
+        desc: "UTM parameters, trailing slashes, www prefixes — all stripped before comparison. The same article from different tracking links still registers as seen."
+      - icon: Shield
+        title: "In-run deduplication"
+        desc: "Multiple RSS feeds often share the same article. A Set-based check within each run catches duplicates before they ever hit ScrapingBee."
+
+  - title: "What's under the hood"
+    type: cards
+    items:
+      - icon: Zap
+        title: "n8n — orchestration"
+        desc: "Two workflows: parser calls writer via Execute Workflow node. Both are independent and reusable."
+      - icon: Globe
+        title: "ScrapingBee — content extraction"
+        desc: "AI extraction rules specify exactly what to pull: article body only. Blocks ads, cookie banners, navigation, comments before they reach the AI."
+      - icon: Brain
+        title: "Claude + Gemini — analysis and writing"
+        desc: "Analyst uses a fast model for structured analysis. Writer uses a capable model for long-form content. Right model for the right job."
+      - icon: Database
+        title: "Airtable — memory and sources"
+        desc: "Two tables: RSS sources (which feeds to monitor) and processed URLs (what's been seen). Both editable without touching the workflow."
+
+  - title: "Open source. Adaptable to any niche."
+    type: callout
+    body: "Both workflow JSONs are open. Swap the RSS sources in Airtable — the rest works unchanged. Tech news, finance, legal, medical — same pipeline, different feeds."
+    cta: "Get the workflows"
+---
