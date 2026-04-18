@@ -51,9 +51,9 @@ export const t = {
     about: {
       label: 'Illia Usiuk · AI Automation Specialist',
       heading: 'About',
-      intro: "I started in design — product, UX, e-commerce. Then discovered automation and AI, and realised the two fit together better than most people expect. Good systems need someone who understands both the user and the pipeline. That's the gap I sit in.",
+      intro: "Started in design — product, UX, e-commerce — then moved into AI automation when it became practical. The combination is rare: most automation engineers don't think about the user, most designers don't ship working systems. I do both.",
       what_heading: 'What I build',
-      what_body: "AI agents that process data, workflows that connect tools without manual glue, automation pipelines that run without someone pressing a button. Design background means I think about the end user, not just the architecture — so what gets built actually gets used.",
+      what_body: "AI agents that process and route data, n8n and Make workflows that replace manual handoffs, LLM pipelines that run without anyone touching them. Design background means I test with real users and cut scope to what actually gets used — not just what's technically possible.",
       cv: 'Download CV',
       how_heading: 'How I work',
       path_heading: 'My path',
@@ -146,9 +146,9 @@ export const t = {
     about: {
       label: 'Іллія Усюк · Спеціаліст з AI автоматизації',
       heading: 'Про мене',
-      intro: 'Починав у дизайні — продукт, UX, e-commerce. Потім відкрив автоматизацію та AI, і зрозумів що ці дві речі підходять одна одній краще ніж більшість думає. Хороші системи потребують того хто розуміє і користувача і пайплайн. Саме в цьому проміжку я працюю.',
+      intro: 'Починав у дизайні — продукт, UX, e-commerce — потім перейшов в AI автоматизацію коли вона стала практичною. Поєднання рідкісне: більшість інженерів автоматизації не думають про користувача, більшість дизайнерів не шиплять робочі системи. Я роблю і те, і інше.',
       what_heading: 'Що я будую',
-      what_body: 'AI агенти що обробляють дані, воркфлоу що з\'єднують інструменти без ручного клею, пайплайни автоматизації що працюють без натискання кнопок. Дизайнерський бекграунд означає що думаю про кінцевого користувача, а не лише про архітектуру — тому те що будується реально використовується.',
+      what_body: 'AI агенти що обробляють і маршрутизують дані, воркфлоу на n8n та Make що замінюють ручні передачі, LLM пайплайни що запускаються без участі людини. Дизайнерський бекграунд означає що тестую з реальними користувачами і ріжу скоп до того що реально використовується — а не лише до того що технічно можливо.',
       cv: 'Завантажити CV',
       how_heading: 'Як я працюю',
       path_heading: 'Мій шлях',
