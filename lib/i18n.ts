@@ -6,7 +6,7 @@ export const t = {
       home: 'Home', cases: 'Cases', about: 'About', contact: 'Contact',
     },
     hero: {
-      role: 'AI Automation Specialist',
+      role: 'AI Specialist',
       line1: 'I build systems that run',
       line2: 'without you',
       cta_primary: 'Open to opportunities',
@@ -49,7 +49,7 @@ export const t = {
       copy: 'Built with AI',
     },
     about: {
-      label: 'Illia Usiuk · AI Automation Specialist',
+      label: 'Illia Usiuk · AI Specialist',
       heading: 'About',
       intro: "Started in design — product, UX, e-commerce — then moved fully into AI automation. Three years building on n8n, Make, and Claude API: agents that route data, pipelines connected to real products, workflows that replace manual handoffs. Design background means I test ideas with real users before spending weeks building the wrong thing.",
       what_heading: 'What I build',
@@ -101,7 +101,7 @@ export const t = {
       home: 'Головна', cases: 'Кейси', about: 'Про мене', contact: 'Контакт',
     },
     hero: {
-      role: 'Спеціаліст з AI автоматизації',
+      role: 'AI Спеціаліст',
       line1: 'Будую системи що працюють',
       line2: 'без тебе',
       cta_primary: 'Відкритий до пропозицій',
@@ -144,7 +144,7 @@ export const t = {
       copy: 'Створено з AI',
     },
     about: {
-      label: 'Іллія Усюк · Спеціаліст з AI автоматизації',
+      label: 'Іллія Усюк · AI Спеціаліст',
       heading: 'Про мене',
       intro: 'Починав у дизайні — продукт, UX, e-commerce — потім повністю перейшов в AI автоматизацію. Три роки будую на n8n, Make та Claude API: агенти що маршрутизують дані, пайплайни підключені до реальних продуктів, воркфлоу що замінюють ручні передачі. Дизайнерський бекграунд означає що тестую ідеї з реальними користувачами до того як витрачати тижні на побудову не того.',
       what_heading: 'Що я будую',
