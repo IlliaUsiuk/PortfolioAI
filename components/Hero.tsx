@@ -98,17 +98,6 @@ export default function Hero() {
           </MagneticButton>
         </motion.div>
 
-        {/* Stats row */}
-        <motion.div custom={0.45} variants={fade} initial="hidden" animate="visible"
-          className="flex flex-wrap gap-x-6 md:gap-x-10 gap-y-4 border-t border-border-default pt-8"
-        >
-          {tr.stats.map(({ value, label }) => (
-            <div key={label}>
-              <p className="text-text-primary font-bold text-2xl tracking-tight">{value}</p>
-              <p className="text-text-secondary text-sm mt-0.5">{label}</p>
-            </div>
-          ))}
-        </motion.div>
 
       </div>
     </section>
