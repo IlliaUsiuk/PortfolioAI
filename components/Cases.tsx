@@ -17,6 +17,7 @@ interface ActiveCase {
   tools: string[]
   icon: string
   status: 'active' | 'locked'
+  highlights?: Array<{ value: string; label: string }>
 }
 
 interface Props {
@@ -56,10 +57,21 @@ function ActiveCard({ c, featured }: { c: ActiveCase; featured?: boolean }) {
       </div>
 
       <div className="mt-4">
-        <p className={['font-bold text-accent', featured ? 'text-2xl' : 'text-lg'].join(' ')}>
-          {c.metric}
-        </p>
-        <div className="flex flex-wrap gap-1.5 mt-3">
+        {c.highlights && c.highlights.length > 0 ? (
+          <div className={['grid gap-3 mb-4', featured ? 'grid-cols-3' : 'grid-cols-2'].join(' ')}>
+            {c.highlights.slice(0, featured ? 3 : 2).map((h) => (
+              <div key={h.value}>
+                <p className={['font-bold text-accent leading-none', featured ? 'text-xl' : 'text-base'].join(' ')}>{h.value}</p>
+                <p className="text-text-secondary text-xs mt-1 leading-tight">{h.label}</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className={['font-bold text-accent mb-4', featured ? 'text-2xl' : 'text-lg'].join(' ')}>
+            {c.metric}
+          </p>
+        )}
+        <div className="flex flex-wrap gap-1.5">
           {c.tools.slice(0, 4).map((t) => (
             <span key={t} className="text-xs px-2 py-1 rounded-sm bg-bg-tertiary text-text-secondary border border-border-default">
               {t}
