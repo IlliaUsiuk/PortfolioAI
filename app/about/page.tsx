@@ -11,6 +11,7 @@ import { t } from '@/lib/i18n'
 const skills = {
   'Automation': ['Make', 'Zapier', 'n8n', 'API integrations (no-code)', 'Webhooks', 'JSON'],
   'AI / LLM': ['ChatGPT API', 'Claude API', 'Gemini', 'Prompt engineering', 'AI agents via n8n/Make'],
+  'Design': ['Figma', 'UX Research', 'Wireframing', 'Prototyping', 'Design Systems', 'Accessibility'],
   'Data': ['Google Sheets', 'Airtable', 'CSV', 'Power BI', 'Process analytics'],
   'Marketing': ['SEO', 'GEO (Generative Engine Optimization)', 'Email automation', 'HubSpot', 'AI-assisted content'],
   'Approach': ['Systems thinking', 'Workflow design', 'MVP validation', 'Full cycle: discovery → production'],
@@ -59,6 +60,27 @@ export default function AboutPage() {
                   <div key={title} className="rounded-md bg-bg-secondary border border-border-default p-5">
                     <p className="text-text-primary font-medium text-sm mb-2">{title}</p>
                     <p className="text-text-secondary text-sm leading-relaxed">{body}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section className="mb-10">
+              <h2 className="font-semibold text-text-primary text-xl mb-6">{tr.experience_heading}</h2>
+              <div className="flex flex-col gap-0">
+                {tr.experience.map((item, i) => (
+                  <div key={item.company} className="relative pl-6 pb-8 last:pb-0">
+                    <div className="absolute left-0 top-1.5 w-2 h-2 rounded-full bg-accent" />
+                    {i < tr.experience.length - 1 && (
+                      <div className="absolute left-[3px] top-3.5 bottom-0 w-px bg-border-default" />
+                    )}
+                    <div className="flex items-baseline gap-2 mb-1">
+                      <span className="font-medium text-text-primary text-sm">{item.role}</span>
+                      <span className="text-text-disabled text-xs">·</span>
+                      <span className="text-accent text-sm font-medium">{item.company}</span>
+                    </div>
+                    <p className="text-text-disabled text-xs mb-2">{item.period}</p>
+                    <p className="text-text-secondary text-sm leading-relaxed">{item.desc}</p>
                   </div>
                 ))}
               </div>

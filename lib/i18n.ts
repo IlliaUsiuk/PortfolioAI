@@ -60,6 +60,27 @@ export const t = {
       built_heading: 'Built with AI',
       built_body: "This site was planned, structured, and built with Claude as a thinking partner. Architecture, copy, design system, code — all developed through AI-assisted process. The portfolio is the proof of method.",
       skills_heading: 'Skills',
+      experience_heading: 'Experience',
+      experience: [
+        {
+          role: 'Product Designer',
+          company: 'Wellify',
+          period: 'Mar 2025 – Sep 2025',
+          desc: 'Fitness tracker integration concept — real-time wearable sync, progress analytics, goal setting. Full UX flow in Figma, design system with accessibility focus, interactive prototypes.',
+        },
+        {
+          role: 'UX/UI Designer',
+          company: 'Accesly',
+          period: 'May 2024 – Jan 2025',
+          desc: 'Web and mobile projects alongside senior designer. Redesigned a fitness tracker app — reduced onboarding time by 20%, improved feature discoverability across 10+ screens.',
+        },
+        {
+          role: 'Web Designer',
+          company: 'Reima',
+          period: 'May 2023 – May 2024',
+          desc: 'E-commerce platform for the autumn collection. Market research, UX design, structured categories. Launched ahead of schedule — captured seasonal mood for Hungarian market.',
+        },
+      ],
       principles: [
         { title: 'Find the problem before writing a single line', body: 'Most automation fails because the process itself was broken. I map the workflow first, find where time actually disappears, then build.' },
         { title: 'Ship fast, iterate real', body: 'A working system in 5 days beats a perfect spec in 5 weeks. I build to production-ready fast, then improve on real usage data.' },
@@ -133,6 +154,27 @@ export const t = {
       built_heading: 'Створено з AI',
       built_body: 'Цей сайт планувався, структурувався і будувався з Claude як партнером по мисленню. Архітектура, тексти, дизайн-система, код — все розроблялось через AI-assisted процес. Портфоліо — це доказ методу.',
       skills_heading: 'Навички',
+      experience_heading: 'Досвід',
+      experience: [
+        {
+          role: 'Product Designer',
+          company: 'Wellify',
+          period: 'Бер 2025 – Вер 2025',
+          desc: 'Концепт інтеграції з фітнес-трекерами — синхронізація з wearables в реальному часі, аналітика прогресу, постановка цілей. Повний UX-флоу у Figma, дизайн-система з фокусом на доступність.',
+        },
+        {
+          role: 'UX/UI Designer',
+          company: 'Accesly',
+          period: 'Трав 2024 – Січ 2025',
+          desc: 'Веб і мобільні проекти разом з senior дизайнером. Редизайн фітнес-трекера — скорочення часу онбордингу на 20%, покращення виявлення функцій на 10+ екранах.',
+        },
+        {
+          role: 'Web Designer',
+          company: 'Reima',
+          period: 'Трав 2023 – Трав 2024',
+          desc: 'E-commerce платформа для осінньої колекції. Дослідження ринку, UX-дизайн, структуровані категорії. Запуск раніше дедлайну — захопив сезонний настрій для угорського ринку.',
+        },
+      ],
       principles: [
         { title: 'Знайди проблему до першого рядка коду', body: 'Більшість автоматизацій провалюється тому що сам процес був зламаний. Спочатку маплю воркфлоу, знаходжу де реально зникає час, потім будую.' },
         { title: 'Шипай швидко, ітерируй реально', body: 'Робоча система за 5 днів краща за ідеальну специфікацію за 5 тижнів. Будую до production-ready швидко, потім покращую на реальних даних.' },
