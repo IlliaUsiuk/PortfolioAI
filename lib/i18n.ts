@@ -83,10 +83,10 @@ export const t = {
         },
       ],
       principles: [
-        { title: 'Find the problem before writing a single line', body: 'Most automation fails because the process itself was broken. I map the workflow first, find where time actually disappears, then build.' },
-        { title: 'Ship fast, iterate real', body: 'A working system in 5 days beats a perfect spec in 5 weeks. I build to production-ready fast, then improve on real usage data.' },
-        { title: 'No code means no waiting', body: 'No IT backlog, no sprint planning, no tech debt from custom code. What you get runs immediately and you can adjust it yourself.' },
-        { title: 'Results in your language', body: 'Hours saved per week. Cost per task cut. Not "connected n8n to Claude via webhook." Business outcome, not tech stack report.' },
+        { title: 'Map the workflow before touching a tool', body: 'I start by understanding how the team actually works: where time disappears, where decisions get stuck, where AI can genuinely help. Not every problem is an AI problem.' },
+        { title: 'Prototype in days, decide on real data', body: 'Quick POC with API or no-code to test the hypothesis before committing resources to a full build. Fast feedback beats long planning.' },
+        { title: 'Track what\'s usable, not what\'s hyped', body: 'I follow new models and agent frameworks as they ship — not to chase trends, but to know what\'s actually production-ready right now and apply it first.' },
+        { title: 'POC to team workflow, not just a demo', body: 'A working demo nobody uses isn\'t a win. I follow through: documentation, handoff, adoption — until it\'s part of the actual process.' },
       ],
     },
     previews: [
@@ -178,10 +178,10 @@ export const t = {
         },
       ],
       principles: [
-        { title: 'Знайди проблему до першого рядка коду', body: 'Більшість автоматизацій провалюється тому що сам процес був зламаний. Спочатку маплю воркфлоу, знаходжу де реально зникає час, потім будую.' },
-        { title: 'Шипай швидко, ітерируй реально', body: 'Робоча система за 5 днів краща за ідеальну специфікацію за 5 тижнів. Будую до production-ready швидко, потім покращую на реальних даних.' },
-        { title: 'No-code означає без очікування', body: 'Без IT-беклогу, без планування спринтів, без технічного боргу. Те що ти отримуєш запускається одразу і ти можеш сам налаштовувати.' },
-        { title: "Результати твоєю мовою", body: 'Збережені години на тиждень. Зниження вартості задачі. Не "підключив n8n до Claude через webhook." Бізнес-результат, а не звіт про стек технологій.' },
+        { title: 'Спочатку маплю процес, потім беру інструмент', body: 'Починаю з того, як команда реально працює: де зникає час, де рішення застрягають, де AI справді може допомогти. Не кожна проблема потребує AI.' },
+        { title: 'Прототип за дні, рішення на реальних даних', body: 'Швидкий POC через API або no-code щоб перевірити гіпотезу до того як витрачати ресурси на повну розробку. Швидкий фідбек краще довгого планування.' },
+        { title: 'Слідкую за тим що працює, а не за хайпом', body: 'Відстежую нові моделі та агентські фреймворки щойно виходять — не щоб гнатись за трендами, а знати що вже production-ready і застосувати першим.' },
+        { title: 'Від POC до реального процесу команди', body: 'Демо яким ніхто не користується — не результат. Доводжу до кінця: документація, впровадження, адопшн — поки не стане частиною реального процесу.' },
       ],
     },
     previews: [
