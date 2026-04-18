@@ -21,6 +21,12 @@ export const t = {
     cases: {
       heading: 'Cases',
       coming: 'Coming',
+      groups: {
+        product: 'Product',
+        content: 'Content',
+        communication: 'Communication',
+        knowledge: 'Knowledge',
+      },
     },
     contact: {
       heading: 'Get in touch',
@@ -88,6 +94,12 @@ export const t = {
     cases: {
       heading: 'Кейси',
       coming: 'Очікуйте',
+      groups: {
+        product: 'Продукт',
+        content: 'Контент',
+        communication: 'Комунікація',
+        knowledge: 'Знання',
+      },
     },
     contact: {
       heading: "Зв'яжіться зі мною",

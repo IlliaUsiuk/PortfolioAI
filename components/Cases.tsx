@@ -36,6 +36,13 @@ const fadeUp: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0, 0, 0.2, 1] as [number, number, number, number] } },
 }
 
+const GROUPS = [
+  { key: 'product',       slugs: ['forge'] },
+  { key: 'content',       slugs: ['qualifizer', 'news-digest'] },
+  { key: 'communication', slugs: ['email-assistant', 'support-chatbot'] },
+  { key: 'knowledge',     slugs: ['rag-chat'] },
+] as const
+
 /* ─── Active card ──────────────────────────────────────────────────────────── */
 function ActiveCard({ c, featured }: { c: ActiveCase; featured?: boolean }) {
   const IconComp = getIcon(c.icon)
@@ -46,7 +53,7 @@ function ActiveCard({ c, featured }: { c: ActiveCase; featured?: boolean }) {
       className={[
         'group flex flex-col justify-between rounded-md bg-bg-secondary border border-border-default',
         'hover:border-border-active transition-[border-color] duration-200',
-        featured ? 'col-span-full min-h-[280px] p-8' : 'min-h-[220px] p-6',
+        featured ? 'min-h-[260px] p-8' : 'min-h-[220px] p-6',
       ].join(' ')}
     >
       <IconComp size={28} className="text-text-secondary" />
@@ -72,9 +79,9 @@ function ActiveCard({ c, featured }: { c: ActiveCase; featured?: boolean }) {
           </p>
         )}
         <div className="flex flex-wrap gap-1.5">
-          {c.tools.slice(0, 4).map((t) => (
-            <span key={t} className="text-xs px-2 py-1 rounded-sm bg-bg-tertiary text-text-secondary border border-border-default">
-              {t}
+          {c.tools.slice(0, 4).map((tool) => (
+            <span key={tool} className="text-xs px-2 py-1 rounded-sm bg-bg-tertiary text-text-secondary border border-border-default">
+              {tool}
             </span>
           ))}
         </div>
@@ -100,6 +107,16 @@ function InProgressCard({ item }: { item: (typeof casesPreview)[number] }) {
   )
 }
 
+/* ─── Group label ──────────────────────────────────────────────────────────── */
+function GroupLabel({ label }: { label: string }) {
+  return (
+    <div className="flex items-center gap-3 mb-4">
+      <span className="text-xs font-medium tracking-widest uppercase text-text-disabled">{label}</span>
+      <div className="flex-1 h-px bg-border-default" />
+    </div>
+  )
+}
+
 /* ─── Cases section ─────────────────────────────────────────────────────────── */
 export default function Cases({ activeCasesEn, activeCasesUk }: Props) {
   const { lang } = useLang()
@@ -111,6 +128,8 @@ export default function Cases({ activeCasesEn, activeCasesUk }: Props) {
     title: trPreviews[i]?.title ?? p.title,
   }))
 
+  const bySlug = Object.fromEntries(activeCases.map(c => [c.slug, c]))
+
   return (
     <section id="cases" className="py-24 px-6">
       <div className="max-w-[1400px] mx-auto">
@@ -119,7 +138,7 @@ export default function Cases({ activeCasesEn, activeCasesUk }: Props) {
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
           variants={fadeUp}
-          className="mb-10"
+          className="mb-12"
         >
           <h2 className="text-text-primary font-semibold text-2xl md:text-3xl">{tr.heading}</h2>
           <p className="text-text-secondary text-sm mt-2">Real problems. Real automations. Real results.</p>
@@ -128,21 +147,40 @@ export default function Cases({ activeCasesEn, activeCasesUk }: Props) {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={{ once: true, amount: 0.05 }}
           variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.07 } } } as Variants}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+          className="flex flex-col gap-10"
         >
-          {activeCases.map((c, i) => (
-            <motion.div key={c.slug} variants={fadeUp} className={i === 0 ? 'lg:col-span-3' : ''}>
-              <ActiveCard c={c} featured={i === 0} />
-            </motion.div>
-          ))}
+          {GROUPS.map(({ key, slugs }) => {
+            const cases = slugs.map(s => bySlug[s]).filter(Boolean)
+            if (cases.length === 0) return null
+            const isFeatured = key === 'product'
 
-          {previews.map((item) => (
-            <motion.div key={item.title} variants={fadeUp}>
-              <InProgressCard item={item} />
+            return (
+              <motion.div key={key} variants={fadeUp}>
+                <GroupLabel label={tr.groups[key]} />
+                <div className={[
+                  'grid gap-5',
+                  isFeatured ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2',
+                ].join(' ')}>
+                  {cases.map(c => (
+                    <ActiveCard key={c.slug} c={c} featured={isFeatured} />
+                  ))}
+                </div>
+              </motion.div>
+            )
+          })}
+
+          {previews.length > 0 && (
+            <motion.div variants={fadeUp}>
+              <GroupLabel label="Coming soon" />
+              <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                {previews.map((item) => (
+                  <InProgressCard key={item.title} item={item} />
+                ))}
+              </div>
             </motion.div>
-          ))}
+          )}
         </motion.div>
       </div>
     </section>
