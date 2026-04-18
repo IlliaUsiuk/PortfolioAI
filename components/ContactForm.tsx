@@ -1,15 +1,10 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
 import { Loader2 } from 'lucide-react'
 import { t } from '@/lib/i18n'
 import type { Lang } from '@/lib/i18n'
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } },
-}
 
 interface Errors {
   name?: string
@@ -171,10 +166,7 @@ export default function ContactForm({ lang = 'EN' }: { lang?: Lang }) {
       {/* Error banner */}
       {status === 'error' && (
         <div className="rounded-md border border-error/30 bg-error/10 px-4 py-3 text-sm text-error">
-          Something went wrong. Try again or reach me directly via{' '}
-          <a href="https://t.me/illia_usiuk" className="underline" target="_blank" rel="noopener noreferrer">Telegram</a>
-          {' '}or{' '}
-          <a href="mailto:illia.usiuk@gmail.com" className="underline">Gmail</a>.
+          {tr.error}
         </div>
       )}
 

@@ -23,18 +23,21 @@ function LinkedinIcon({ size = 18 }: { size?: number }) {
 const socials = [
   {
     label: 'LinkedIn',
+    sub: 'Best for professional intro',
     href: 'https://linkedin.com/in/illia-usiuk',
-    icon: <LinkedinIcon size={16} />,
+    icon: <LinkedinIcon size={20} />,
   },
   {
     label: 'Telegram',
+    sub: 'Fast async comms',
     href: 'https://t.me/illia_usiuk',
-    icon: <Send size={16} />,
+    icon: <Send size={20} />,
   },
   {
     label: 'usyuk01@gmail.com',
+    sub: 'For formal outreach',
     href: 'mailto:usyuk01@gmail.com',
-    icon: <Mail size={16} />,
+    icon: <Mail size={20} />,
   },
 ]
 
@@ -43,7 +46,7 @@ export default function ContactSection() {
   const tr = t[lang].contact
 
   return (
-    <section id="contact" className="py-24 px-6">
+    <section id="contact" className="py-16 md:py-24 px-4 md:px-6">
       <div className="max-w-[1400px] mx-auto">
         <motion.div
           initial="hidden"
@@ -54,21 +57,30 @@ export default function ContactSection() {
         >
           <h2 className="text-text-primary font-semibold text-2xl md:text-3xl">{tr.heading}</h2>
           <p className="text-text-secondary text-sm mt-2 max-w-md">{tr.sub}</p>
+        </motion.div>
 
-          <div className="flex flex-wrap gap-3 mt-6">
-            {socials.map(({ label, href, icon }) => (
-              <a
-                key={label}
-                href={href}
-                target={href.startsWith('mailto') ? undefined : '_blank'}
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-border-default bg-bg-secondary text-text-secondary text-sm hover:border-border-active hover:text-text-primary transition-[border-color,color] duration-150"
-              >
-                {icon}
-                {label}
-              </a>
-            ))}
-          </div>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={fadeUp}
+          className="grid gap-4 sm:grid-cols-3 mb-10"
+        >
+          {socials.map(({ label, sub, href, icon }) => (
+            <a
+              key={label}
+              href={href}
+              target={href.startsWith('mailto') ? undefined : '_blank'}
+              rel="noopener noreferrer"
+              className="flex items-start gap-4 p-5 rounded-md border border-border-default bg-bg-secondary hover:border-border-active hover:bg-bg-tertiary transition-[border-color,background] duration-150"
+            >
+              <span className="text-text-secondary mt-0.5 shrink-0">{icon}</span>
+              <div>
+                <p className="text-text-primary text-sm font-medium">{label}</p>
+                <p className="text-text-secondary text-xs mt-0.5">{sub}</p>
+              </div>
+            </a>
+          ))}
         </motion.div>
 
         <motion.div

@@ -100,7 +100,7 @@ export default function Hero() {
 
         {/* Stats row */}
         <motion.div custom={0.45} variants={fade} initial="hidden" animate="visible"
-          className="flex flex-wrap gap-x-10 gap-y-4 border-t border-border-default pt-8"
+          className="flex flex-wrap gap-x-6 md:gap-x-10 gap-y-4 border-t border-border-default pt-8"
         >
           {tr.stats.map(({ value, label }) => (
             <div key={label}>

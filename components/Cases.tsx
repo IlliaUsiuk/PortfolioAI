@@ -5,7 +5,6 @@ import type { Variants } from 'framer-motion'
 
 import * as LucideIcons from 'lucide-react'
 import type { LucideProps } from 'lucide-react'
-import { casesPreview } from '@/config/cases-preview'
 import { useLang } from '@/components/LangProvider'
 import { t } from '@/lib/i18n'
 
@@ -65,7 +64,7 @@ function ActiveCard({ c, featured }: { c: ActiveCase; featured?: boolean }) {
 
       <div className="mt-4">
         {c.highlights && c.highlights.length > 0 ? (
-          <div className={['grid gap-3 mb-4', featured ? 'grid-cols-3' : 'grid-cols-2'].join(' ')}>
+          <div className={['grid gap-3 mb-4', featured ? 'grid-cols-2 sm:grid-cols-3' : 'grid-cols-2'].join(' ')}>
             {c.highlights.slice(0, featured ? 3 : 2).map((h) => (
               <div key={h.value}>
                 <p className={['font-bold text-accent leading-none', featured ? 'text-xl' : 'text-base'].join(' ')}>{h.value}</p>
@@ -90,23 +89,6 @@ function ActiveCard({ c, featured }: { c: ActiveCase; featured?: boolean }) {
   )
 }
 
-/* ─── In-progress card ─────────────────────────────────────────────────────── */
-function InProgressCard({ item }: { item: (typeof casesPreview)[number] }) {
-  const IconComp = getIcon(item.icon)
-  const { lang } = useLang()
-  const coming = t[lang].cases.coming
-
-  return (
-    <div className="flex flex-col justify-between rounded-md bg-bg-secondary border border-border-default min-h-[220px] p-6 opacity-40 select-none">
-      <IconComp size={28} className="text-text-disabled" />
-      <div>
-        <h3 className="font-semibold text-text-secondary text-base mt-4 mb-1">{item.title}</h3>
-        <p className="text-text-disabled text-sm">{coming} {item.comingSoon}</p>
-      </div>
-    </div>
-  )
-}
-
 /* ─── Group label ──────────────────────────────────────────────────────────── */
 function GroupLabel({ label }: { label: string }) {
   return (
@@ -121,17 +103,12 @@ function GroupLabel({ label }: { label: string }) {
 export default function Cases({ activeCasesEn, activeCasesUk }: Props) {
   const { lang } = useLang()
   const tr = t[lang].cases
-  const trPreviews = t[lang].previews
   const activeCases = lang === 'UA' ? activeCasesUk : activeCasesEn
-  const previews = casesPreview.slice(0, 3).map((p, i) => ({
-    ...p,
-    title: trPreviews[i]?.title ?? p.title,
-  }))
 
   const bySlug = Object.fromEntries(activeCases.map(c => [c.slug, c]))
 
   return (
-    <section id="cases" className="py-24 px-6">
+    <section id="cases" className="py-16 md:py-24 px-4 md:px-6">
       <div className="max-w-[1400px] mx-auto">
         <motion.div
           initial="hidden"
