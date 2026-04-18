@@ -16,11 +16,7 @@ export default function Hero() {
   const tr = t[lang].hero
 
   const handleAudit = () => {
-    const el = document.getElementById('contact')
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' })
-      window.dispatchEvent(new CustomEvent('prefill-contact', { detail: 'Process audit request' }))
-    }
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
