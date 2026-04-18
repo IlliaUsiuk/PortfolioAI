@@ -87,7 +87,7 @@ export default function ContactForm({ lang = 'EN' }: { lang?: Lang }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-4 max-w-lg">
+    <form onSubmit={handleSubmit} noValidate className="space-y-4 w-full">
       {/* Honeypot */}
       <input
         ref={honeypotRef}
