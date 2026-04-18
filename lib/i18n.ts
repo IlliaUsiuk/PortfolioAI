@@ -15,7 +15,6 @@ export const t = {
       stats: [
         { value: '6+', label: 'Projects shipped' },
         { value: '3+', label: 'Years in automation & AI' },
-        { value: 'Design +', label: 'Engineering background' },
       ],
     },
     cases: {
@@ -111,7 +110,6 @@ export const t = {
       stats: [
         { value: '6+', label: 'Проектів запущено' },
         { value: '3+', label: 'Роки в автоматизації та AI' },
-        { value: 'Дизайн +', label: 'Інженерний бекграунд' },
       ],
     },
     cases: {
