@@ -31,6 +31,8 @@ export const t = {
     contact: {
       heading: 'Get in touch',
       sub: "Currently open to new roles in AI, automation, and product. Let's talk.",
+      social_linkedin: 'Best for professional intro',
+      social_telegram: 'Fast async comms',
       label_name: 'Name',
       label_email: 'Email',
       label_message: 'Message',
@@ -125,6 +127,8 @@ export const t = {
     contact: {
       heading: "Зв'яжіться зі мною",
       sub: 'Відкритий до нових ролей в AI, автоматизації та продукті. Поговоримо.',
+      social_linkedin: 'Найкраще для знайомства',
+      social_telegram: 'Швидкий асинхронний зв\'язок',
       label_name: "Ім'я",
       label_email: 'Email',
       label_message: 'Повідомлення',

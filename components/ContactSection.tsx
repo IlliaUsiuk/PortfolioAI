@@ -20,24 +20,24 @@ function LinkedinIcon({ size = 18 }: { size?: number }) {
   )
 }
 
-const socials = [
-  {
-    label: 'LinkedIn',
-    sub: 'Best for professional intro',
-    href: 'https://linkedin.com/in/illia-usiuk',
-    icon: <LinkedinIcon size={20} />,
-  },
-  {
-    label: 'Telegram',
-    sub: 'Fast async comms',
-    href: 'https://t.me/illia_usiuk',
-    icon: <Send size={20} />,
-  },
-]
-
 export default function ContactSection() {
   const { lang } = useLang()
   const tr = t[lang].contact
+
+  const socials = [
+    {
+      label: 'LinkedIn',
+      sub: tr.social_linkedin,
+      href: 'https://linkedin.com/in/illia-usiuk',
+      icon: <LinkedinIcon size={20} />,
+    },
+    {
+      label: 'Telegram',
+      sub: tr.social_telegram,
+      href: 'https://t.me/illia_usiuk',
+      icon: <Send size={20} />,
+    },
+  ]
 
   return (
     <section id="contact" className="py-16 md:py-24 px-4 md:px-6">
