@@ -22,14 +22,14 @@ const syne = Unbounded({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://myaiway.com'),
-  title: 'MyAIWay — AI Automation for Your Business',
+  title: 'Illia Usiuk — AI Specialist',
   description:
-    'I help small and medium businesses save time and cut costs with AI automation. No code — just working solutions in under a week.',
-  keywords: ['AI automation', 'no-code', 'business automation', 'AI consultant'],
+    'AI Specialist with a design background. I build agents, automation workflows, and LLM pipelines — from prototype to team adoption.',
+  keywords: ['AI specialist', 'AI automation', 'n8n', 'Make', 'Claude API', 'LLM', 'no-code'],
   openGraph: {
-    title: 'MyAIWay — AI Automation for Your Business',
+    title: 'Illia Usiuk — AI Specialist',
     description:
-      'I help small and medium businesses save time and cut costs with AI automation.',
+      'AI Specialist with a design background. I build agents, automation workflows, and LLM pipelines — from prototype to team adoption.',
     type: 'website',
     locale: 'en_US',
   },
