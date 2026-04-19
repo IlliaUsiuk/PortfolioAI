@@ -1,6 +1,5 @@
 'use client'
 
-import type { Metadata } from 'next'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import CustomCursor from '@/components/CustomCursor'
@@ -122,11 +121,6 @@ export default function AboutPage() {
                   </div>
                 ))}
               </div>
-            </div>
-
-            <div className="rounded-md bg-bg-secondary border border-border-default p-6">
-              <p className="text-text-primary font-medium text-sm mb-2">{tr.built_heading}</p>
-              <p className="text-text-secondary text-sm leading-relaxed">{tr.built_body}</p>
             </div>
 
           </div>
