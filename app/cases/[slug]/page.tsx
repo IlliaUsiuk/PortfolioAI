@@ -212,7 +212,7 @@ export default async function CasePage({ params }: { params: Promise<Params> }) 
                         </div>
                         {section.cta && (
                           <a
-                            href="#"
+                            href="/#contact"
                             className="inline-flex items-center justify-center h-10 px-5 rounded-md bg-accent text-white text-sm font-medium hover:bg-[#5B3EEF] transition-colors duration-200 flex-shrink-0"
                           >
                             {section.cta}
