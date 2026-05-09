@@ -7,8 +7,8 @@ export const t = {
     },
     hero: {
       role: 'AI Specialist',
-      line1: 'I build AI automations',
-      line2: 'that stick after the demo',
+      line1: 'I build systems',
+      line2: 'that run without you',
       subhead: 'I design and ship n8n, Make, and API workflows — from working prototype to team adoption. Design background means the system fits the team, not just the spec.',
       cta_primary: 'See my work',
       cta_secondary: 'Let\'s talk',
@@ -113,8 +113,8 @@ export const t = {
     },
     hero: {
       role: 'AI Спеціаліст',
-      line1: 'Будую AI автоматизації',
-      line2: 'що залишаються після демо',
+      line1: 'Будую системи',
+      line2: 'що працюють без тебе',
       subhead: 'Проектую і запускаю воркфлоу на n8n, Make та API — від прототипу до реального впровадження командою. Дизайнерський бекграунд означає: система підходить команді, а не тільки технічному завданню.',
       cta_primary: 'Переглянути кейси',
       cta_secondary: 'Поговоримо',
