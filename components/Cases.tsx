@@ -35,45 +35,58 @@ const fadeUp: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0, 0, 0.2, 1] as [number, number, number, number] } },
 }
 
+const FLAGSHIP = 'ai-media-content'
+
 const GROUPS = [
+  { key: 'content',       slugs: ['news-digest'] },
   { key: 'product',       slugs: ['forge'] },
-  { key: 'content',       slugs: ['ai-media-content', 'news-digest'] },
   { key: 'communication', slugs: ['email-assistant', 'support-chatbot'] },
   { key: 'knowledge',     slugs: ['rag-chat'] },
 ] as const
 
 /* ─── Active card ──────────────────────────────────────────────────────────── */
-function ActiveCard({ c, featured }: { c: ActiveCase; featured?: boolean }) {
+function ActiveCard({ c, featured, flagship }: { c: ActiveCase; featured?: boolean; flagship?: boolean }) {
   const IconComp = getIcon(c.icon)
 
   return (
     <a
       href={`/cases/${c.slug}`}
       className={[
-        'group flex flex-col justify-between rounded-md bg-bg-secondary border border-border-default',
-        'hover:border-border-active transition-[border-color] duration-200',
-        featured ? 'min-h-[260px] p-8' : 'min-h-[220px] p-6',
+        'group flex flex-col justify-between rounded-md bg-bg-secondary',
+        'transition-[border-color,box-shadow] duration-200',
+        flagship
+          ? 'border border-accent/40 hover:border-accent/70 hover:shadow-[0_0_32px_#6B4EFF18] p-8 min-h-[280px]'
+          : featured
+            ? 'border border-border-default hover:border-border-active min-h-[260px] p-8'
+            : 'border border-border-default hover:border-border-active min-h-[220px] p-6',
       ].join(' ')}
     >
-      <IconComp size={28} className="text-text-secondary" />
+      <div className="flex items-start justify-between gap-3">
+        <IconComp size={28} className={flagship ? 'text-accent' : 'text-text-secondary'} />
+        {flagship && (
+          <span className="text-[10px] font-medium tracking-widest uppercase text-accent border border-accent/30 px-2 py-0.5 rounded-sm">
+            Flagship
+          </span>
+        )}
+      </div>
 
       <div>
-        <h3 className="font-semibold text-text-primary text-base mt-4 mb-1">{c.title}</h3>
+        <h3 className={['font-semibold text-text-primary mt-4 mb-1', flagship ? 'text-lg' : 'text-base'].join(' ')}>{c.title}</h3>
         <p className="text-text-secondary text-sm line-clamp-2">{c.description}</p>
       </div>
 
       <div className="mt-4">
         {c.highlights && c.highlights.length > 0 ? (
-          <div className={['grid gap-3 mb-4', featured ? 'grid-cols-2 sm:grid-cols-3' : 'grid-cols-2'].join(' ')}>
-            {c.highlights.slice(0, featured ? 3 : 2).map((h) => (
+          <div className={['grid gap-3 mb-4', flagship || featured ? 'grid-cols-2 sm:grid-cols-3' : 'grid-cols-2'].join(' ')}>
+            {c.highlights.slice(0, flagship || featured ? 3 : 2).map((h) => (
               <div key={h.value}>
-                <p className={['font-bold text-accent leading-none', featured ? 'text-xl' : 'text-base'].join(' ')}>{h.value}</p>
+                <p className={['font-bold text-accent leading-none', flagship || featured ? 'text-xl' : 'text-base'].join(' ')}>{h.value}</p>
                 <p className="text-text-secondary text-xs mt-1 leading-tight">{h.label}</p>
               </div>
             ))}
           </div>
         ) : (
-          <p className={['font-bold text-accent mb-4', featured ? 'text-2xl' : 'text-lg'].join(' ')}>
+          <p className={['font-bold text-accent mb-4', flagship || featured ? 'text-2xl' : 'text-lg'].join(' ')}>
             {c.metric}
           </p>
         )}
@@ -128,20 +141,23 @@ export default function Cases({ activeCasesEn, activeCasesUk }: Props) {
           variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.07 } } } as Variants}
           className="flex flex-col gap-10"
         >
+          {/* Flagship case — full width, accent border */}
+          {bySlug[FLAGSHIP] && (
+            <motion.div variants={fadeUp}>
+              <ActiveCard c={bySlug[FLAGSHIP]} flagship />
+            </motion.div>
+          )}
+
           {GROUPS.map(({ key, slugs }) => {
             const cases = slugs.map(s => bySlug[s]).filter(Boolean)
             if (cases.length === 0) return null
-            const isFeatured = key === 'product'
 
             return (
               <motion.div key={key} variants={fadeUp}>
                 <GroupLabel label={tr.groups[key]} />
-                <div className={[
-                  'grid gap-5',
-                  isFeatured ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2',
-                ].join(' ')}>
+                <div className="grid gap-5 grid-cols-1 md:grid-cols-2">
                   {cases.map(c => (
-                    <ActiveCard key={c.slug} c={c} featured={isFeatured} />
+                    <ActiveCard key={c.slug} c={c} />
                   ))}
                 </div>
               </motion.div>

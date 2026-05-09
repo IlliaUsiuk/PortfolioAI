@@ -18,6 +18,10 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
     if (stored === 'EN' || stored === 'UA') setLangState(stored)
   }, [])
 
+  useEffect(() => {
+    document.documentElement.lang = lang === 'UA' ? 'uk' : 'en'
+  }, [lang])
+
   const setLang = (l: Lang) => {
     setLangState(l)
     localStorage.setItem('lang', l)

@@ -63,7 +63,7 @@ export default async function CasePage({ params }: { params: Promise<Params> }) 
     about: isUK ? 'Про цей кейс' : 'About this case',
     stack: isUK ? 'Стек' : 'Stack',
     read: isUK ? 'хв читання' : 'min read',
-    cta: isUK ? 'Схожа задача?' : 'Got a similar problem?',
+    cta: isUK ? 'Обговорити проект' : 'Let\'s talk about your project',
   }
 
   return (
@@ -185,8 +185,8 @@ export default async function CasePage({ params }: { params: Promise<Params> }) 
                           ))}
                         </div>
                         {section.screenshot && (
-                          <div className="rounded-lg overflow-hidden border border-border-default">
-                            <img src={section.screenshot} alt={section.title} className="w-full h-auto block" />
+                          <div className="rounded-lg overflow-hidden border border-border-default" style={{ minHeight: '200px' }}>
+                            <img src={section.screenshot} alt={section.title} className="w-full h-auto block" loading="lazy" />
                           </div>
                         )}
                       </div>
@@ -194,13 +194,13 @@ export default async function CasePage({ params }: { params: Promise<Params> }) 
 
                     {/* screenshot(s) (non-split, non-callout sections) */}
                     {section.screenshot && section.type !== 'split' && section.type !== 'callout' && (
-                      <div className="mt-4 rounded-lg overflow-hidden border border-border-default">
-                        <img src={section.screenshot} alt={section.title} className="w-full h-auto block" />
+                      <div className="mt-4 rounded-lg overflow-hidden border border-border-default" style={{ minHeight: '200px' }}>
+                        <img src={section.screenshot} alt={section.title} className="w-full h-auto block" loading="lazy" />
                       </div>
                     )}
                     {section.screenshot2 && section.type !== 'split' && section.type !== 'callout' && (
-                      <div className="mt-4 rounded-lg overflow-hidden border border-border-default">
-                        <img src={section.screenshot2} alt={section.title} className="w-full h-auto block" />
+                      <div className="mt-4 rounded-lg overflow-hidden border border-border-default" style={{ minHeight: '200px' }}>
+                        <img src={section.screenshot2} alt={section.title} className="w-full h-auto block" loading="lazy" />
                       </div>
                     )}
 
@@ -208,7 +208,7 @@ export default async function CasePage({ params }: { params: Promise<Params> }) 
                     {section.type === 'callout' && (
                       <div className="rounded-md border border-accent/30 bg-accent/5 overflow-hidden">
                         {section.screenshot && (
-                          <img src={section.screenshot} alt={section.title} className="w-full h-auto block" />
+                          <img src={section.screenshot} alt={section.title} className="w-full h-auto block" loading="lazy" />
                         )}
                         <div className="p-6 flex flex-col sm:flex-row sm:items-center gap-4">
                           <div className="flex-1">

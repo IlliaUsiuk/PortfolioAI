@@ -15,8 +15,8 @@ export default function Hero() {
   const { lang } = useLang()
   const tr = t[lang].hero
 
-  const handleAudit = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+  const scrollIntoView = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
@@ -65,11 +65,18 @@ export default function Hero() {
 
         {/* Headline */}
         <motion.h1 custom={0.2} variants={fade} initial="hidden" animate="visible"
-          className="font-display font-extrabold text-display-mobile md:text-display-tablet lg:text-display-desktop text-text-primary leading-[1.05] tracking-[-0.03em] mb-10"
+          className="font-display font-extrabold text-display-mobile md:text-display-tablet lg:text-display-desktop text-text-primary leading-[1.05] tracking-[-0.03em] mb-6"
         >
           {tr.line1}<br />
           <span className="text-accent">{tr.line2}</span>
         </motion.h1>
+
+        {/* Subhead */}
+        <motion.p custom={0.25} variants={fade} initial="hidden" animate="visible"
+          className="text-text-secondary text-base md:text-lg leading-relaxed max-w-xl mb-8"
+        >
+          {tr.subhead}
+        </motion.p>
 
         {/* CTAs */}
         <motion.div custom={0.3} variants={fade} initial="hidden" animate="visible"
@@ -77,7 +84,7 @@ export default function Hero() {
         >
           <MagneticButton>
             <button
-              onClick={handleAudit}
+              onClick={() => scrollIntoView('cases')}
               className="inline-flex items-center h-11 px-7 rounded-md bg-accent text-white text-sm font-medium hover:bg-[#5B3EEF] transition-colors duration-200"
             >
               {tr.cta_primary}
@@ -85,16 +92,12 @@ export default function Hero() {
           </MagneticButton>
 
           <MagneticButton>
-            <a
-              href="#cases"
-              onClick={(e) => {
-                e.preventDefault()
-                document.getElementById('cases')?.scrollIntoView({ behavior: 'smooth' })
-              }}
+            <button
+              onClick={() => scrollIntoView('contact')}
               className="inline-flex items-center h-11 px-7 rounded-md border border-border-active text-text-primary text-sm font-medium hover:bg-white/5 hover:border-[#4a4a70] transition-[background,border-color] duration-200"
             >
               {tr.cta_secondary}
-            </a>
+            </button>
           </MagneticButton>
         </motion.div>
 

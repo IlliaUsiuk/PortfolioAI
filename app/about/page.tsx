@@ -7,12 +7,11 @@ import { useLang } from '@/components/LangProvider'
 import { t } from '@/lib/i18n'
 
 const skills = {
-  'Automation': ['Make', 'Zapier', 'n8n', 'API integrations (no-code)', 'Webhooks', 'JSON'],
-  'AI / LLM': ['ChatGPT API', 'Claude API', 'Gemini', 'Prompt engineering', 'AI agents via n8n/Make'],
-  'Design': ['Figma', 'UX Research', 'Wireframing', 'Prototyping', 'Design Systems', 'Accessibility'],
-  'Data': ['Google Sheets', 'Airtable', 'CSV', 'Power BI', 'Process analytics'],
-  'Marketing': ['SEO', 'GEO (Generative Engine Optimization)', 'Email automation', 'HubSpot', 'AI-assisted content'],
-  'Approach': ['Systems thinking', 'Workflow design', 'MVP validation', 'Full cycle: discovery → production'],
+  'Automation': ['Make', 'n8n', 'Zapier', 'API integrations', 'Webhooks', 'JSON'],
+  'AI / LLM': ['Claude API', 'ChatGPT API', 'Gemini', 'Prompt engineering', 'AI agents'],
+  'Design': ['Figma', 'UX Research', 'Wireframing', 'Prototyping', 'Design Systems'],
+  'Data': ['Google Sheets', 'Airtable', 'Notion', 'Power BI', 'Process analytics'],
+  'Approach': ['Systems thinking', 'Workflow design', 'MVP validation', 'FastAPI', 'Python'],
 }
 
 export default function AboutPage() {
@@ -39,6 +38,18 @@ export default function AboutPage() {
               <p className="text-text-secondary leading-relaxed">{tr.what_body}</p>
             </section>
 
+
+            <section className="mb-10">
+              <h2 className="font-semibold text-text-primary text-xl mb-6">{tr.why_heading}</h2>
+              <div className="flex flex-col gap-4">
+                {tr.why_items.map(({ title, body }) => (
+                  <div key={title} className="rounded-md bg-bg-secondary border border-border-default p-5">
+                    <p className="text-text-primary font-medium text-sm mb-2">{title}</p>
+                    <p className="text-text-secondary text-sm leading-relaxed">{body}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
 
             <section className="mb-10">
               <h2 className="font-semibold text-text-primary text-xl mb-6">{tr.how_heading}</h2>
