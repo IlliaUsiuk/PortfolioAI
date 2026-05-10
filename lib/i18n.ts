@@ -90,7 +90,7 @@ export const t = {
           role: 'Web Designer',
           company: 'Reima',
           period: 'May 2023 – May 2024',
-          desc: 'New market launch with a hard seasonal deadline and an unfamiliar customer audience. Delivered full e-commerce UX from scratch. Shipped ahead of deadline.',
+          desc: 'New market launch with a hard seasonal deadline and an unfamiliar audience. Took on project management responsibilities: sourcing people, distributing tasks, coordinating execution. Delivered full e-commerce UX from scratch on time.',
         },
       ],
       principles: [
@@ -196,7 +196,7 @@ export const t = {
           role: 'Web Designer',
           company: 'Reima',
           period: 'Трав 2023 – Трав 2024',
-          desc: 'Вихід на новий ринок з жорстким сезонним дедлайном і незнайомою аудиторією. Здав повний e-commerce UX з нуля. Завершив раніше дедлайну.',
+          desc: 'Вихід на новий ринок з жорстким сезонним дедлайном і незнайомою аудиторією. Брав на себе функції проджект менеджера: підбирав людей, розподіляв задачі, координував виконання. Здав повний e-commerce UX з нуля вчасно.',
         },
       ],
       principles: [
