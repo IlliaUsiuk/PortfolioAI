@@ -71,13 +71,6 @@ export default function Hero() {
           <span className="text-accent">{tr.line2}</span>
         </motion.h1>
 
-        {/* Subhead */}
-        <motion.p custom={0.25} variants={fade} initial="hidden" animate="visible"
-          className="text-text-secondary text-base md:text-lg leading-relaxed max-w-xl mb-8"
-        >
-          {tr.subhead}
-        </motion.p>
-
         {/* CTAs */}
         <motion.div custom={0.3} variants={fade} initial="hidden" animate="visible"
           className="flex flex-wrap items-center gap-3 mb-14"

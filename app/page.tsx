@@ -1,6 +1,5 @@
 import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
-import BestFit from '@/components/BestFit'
 import Cases from '@/components/Cases'
 import ContactSection from '@/components/ContactSection'
 import Footer from '@/components/Footer'
@@ -17,7 +16,6 @@ export default function Home() {
       <Nav />
       <main className="flex-1">
         <Hero />
-        <BestFit />
         <Cases activeCasesEn={activeCasesEn} activeCasesUk={activeCasesUk} />
         <ContactSection />
       </main>

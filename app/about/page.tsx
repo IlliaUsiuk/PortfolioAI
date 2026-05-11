@@ -40,18 +40,6 @@ export default function AboutPage() {
 
 
             <section className="mb-10">
-              <h2 className="font-semibold text-text-primary text-xl mb-6">{tr.why_heading}</h2>
-              <div className="flex flex-col gap-4">
-                {tr.why_items.map(({ title, body }) => (
-                  <div key={title} className="rounded-md bg-bg-secondary border border-border-default p-5">
-                    <p className="text-text-primary font-medium text-sm mb-2">{title}</p>
-                    <p className="text-text-secondary text-sm leading-relaxed">{body}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            <section className="mb-10">
               <h2 className="font-semibold text-text-primary text-xl mb-6">{tr.how_heading}</h2>
               <div className="grid gap-4 sm:grid-cols-2">
                 {tr.principles.map(({ title, body }) => (
